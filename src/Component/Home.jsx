@@ -30,6 +30,9 @@ export const Home = ()=>{
         
     }
 
+    const handleProduct = ()=>{
+        navigate("/productpage")
+    }
     return(
         <div>
             <div className=" relative bg-orange-400 w-full  h-20 flex flex-row justify-between px-5 text-center align-middle py-5 relative">
@@ -57,7 +60,7 @@ export const Home = ()=>{
                     <ul  className="flex flex-row justify-between gap-5 cursor-pointer ">
                         
                         <li><a href="http://localhost:3000" >Home</a> </li>
-                        <li><a href="http://localhost:3000/contact" >Contact</a> </li>
+                        <li><a href="http://localhost:3000/contact" >About us</a> </li>
                         <li><a href="http://localhost:3000/profile" >Profile</a> </li>
                         <li onClick={handleLogout}>Logout</li>
                     </ul>
@@ -148,7 +151,7 @@ export const Home = ()=>{
                                 <text>Tata Salt, 1kg</text>
                                 <text>MRP : 28/-</text>
                                 <div className="my-2 ">
-                                    <button className="px-3 py-1 bg-red-600 text-white">Add</button>
+                                    <button className="px-3 py-1 bg-red-600 text-white rounded">Add</button>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +160,7 @@ export const Home = ()=>{
             }
 
                         <div className=" h-64 w-48 border-2 border-gray-400 rounded">
-                             <text className=" flex flex-row justify-center align-middle mx-auto pt-28 cursor-pointer text-blue-700"> More</text>
+                             <text className=" flex flex-row justify-center align-middle mx-auto pt-28 cursor-pointer text-blue-700"  onClick={handleProduct}> More</text>
                         </div>
             </div>
             
@@ -175,7 +178,7 @@ export const Home = ()=>{
                                 <text>Tata Salt, 1kg</text>
                                 <text>MRP : 28/-</text>
                                 <div className="my-2 ">
-                                    <button className="px-3 py-1 bg-red-600 text-white">Add</button>
+                                    <button className="px-3 py-1 bg-red-600 text-white rounded">Add</button>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +187,7 @@ export const Home = ()=>{
             }
 
                         <div className=" h-64 w-48 border-2 border-gray-400 rounded">
-                             <text className=" flex flex-row justify-center align-middle mx-auto pt-28 cursor-pointer text-blue-700"> More</text>
+                             <text className=" flex flex-row justify-center align-middle mx-auto pt-28 cursor-pointer text-blue-700" onClick={handleProduct}> More</text>
                         </div>
             </div>
 
