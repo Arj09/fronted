@@ -6,6 +6,7 @@ import { Http } from "./Http"
 export const Image = ()=>{
     const [image, setImage] = useState()
     const [data, setData] = useState([])
+    const [count, setCount] = useState(0)
 
     
 
@@ -22,6 +23,7 @@ export const Image = ()=>{
             }
         ).then((res)=>{
             console.log(res.data)
+            setCount(count+1)
            setImage(' ')
         }).catch((err)=>{
             console.log(err)
@@ -44,7 +46,7 @@ export const Image = ()=>{
             console.log(err)
         })
 
-    },[])
+    },[count])
 
 
     return(
