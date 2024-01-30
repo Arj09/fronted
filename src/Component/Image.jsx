@@ -39,7 +39,7 @@ export const Image = ()=>{
     }
 
     useEffect(()=>{
-        Http.get("http://localhost:5000/api/image-upload").then((res)=>{
+        Http.get("https://store-backend-o5qm.onrender.com/api/image-upload").then((res)=>{
             console.log(res.data.Image)
             setData(res.data.Image)
             setImage('')
