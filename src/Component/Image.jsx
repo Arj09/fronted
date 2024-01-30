@@ -42,6 +42,7 @@ export const Image = ()=>{
         Http.get("http://localhost:5000/api/image-upload").then((res)=>{
             console.log(res.data.Image)
             setData(res.data.Image)
+            setImage('')
         }).catch((err)=>{
             console.log(err)
         })
@@ -67,7 +68,7 @@ export const Image = ()=>{
                 return(
                     <>
                     <div>{data.image}</div>
-                    <img src={`http://localhost:5000/images/${data.image}`} alt="loading" />
+                    <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" />
                     </>
                     
                 )
