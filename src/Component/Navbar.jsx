@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./ContextAPI/context";
 import { Http } from "./Http";
+import { Link } from "react-router-dom";
 
 
 
@@ -39,6 +40,7 @@ export const Navbar = ()=>{
         setLogin(false)
         localStorage.removeItem('Token')
         navigate("/")
+        setShow(false)
     
     }
 
@@ -151,11 +153,26 @@ export const Navbar = ()=>{
                     </svg>
                     </text>
                     <ul className=" flex flex-col justify-center mx-auto my-1 text-white cursor-pointer  gap-1">
-                        <li>Home</li>
-                        <li>Contact</li>
-                        <li >Profile</li>
-                        <li>Cart</li>
-                        <li onClick={handleLogout}>Logout</li>
+                        {
+                            login ? (
+                                <>
+                                <Link to="/" >Home</Link>
+                                <Link to="/contact" >Contact US</Link>
+                                <Link to="/profile" >Profile</Link>
+                                <Link to="/cart" >Cart</Link>
+                                <Link to="/"  onClick={handleLogout}>Logout</Link>
+                                
+                                </>
+                            ):(
+                                <>
+                                <Link to="/" >Home</Link>
+                                <Link to="/contact" >Contact US</Link>
+                                <Link to="/login" >Login</Link>
+                                </>
+
+                            )
+                        }
+
                     </ul>
 
                 </div>
