@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Http } from "./Http";
 
 export const Profie = ()=>{
     const [select, setselect] = useState('profile')
+    const [user, setUser] = useState({})
 
     const handleHistory = ()=>{
         setselect('history')
@@ -9,6 +11,27 @@ export const Profie = ()=>{
     }
     const handleOrder = ()=>{
         setselect('order')
+    }
+
+
+
+    const handleUser = ()=>{
+        Http.get("/api/user/current",{
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("Token")}`,
+            },
+            
+        }).then((res)=>{
+            
+            setUser(res.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+
+       
+    
+    
     }
     return(
         <div className="flex flex-row w-full mx-auto bg-red-800">
@@ -39,7 +62,7 @@ export const Profie = ()=>{
                 {
                     select === 'profile' && (
                         <div className=" flex flex-col w-4/5 mx-auto my-3 justify-between">
-                            <text>Username : Arjun kushwah</text>
+                            <text>Username : </text>
                             <text>Email  : Arjunkushwah@gmail.com</text>
 
                         </div>
