@@ -53,6 +53,7 @@ export const Login = ()=>{
             email : registerData.email,
             password : registerData.password
         }).then((res)=>{
+            alert("login Successfully")
             setShow(true)
         }).catch((err)=>{
             alert("Something wrong")
