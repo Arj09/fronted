@@ -39,6 +39,7 @@ export const Login = ()=>{
             navigate("/")
             console.log(res.data)
         }).catch((err)=>{
+            alert("Something wrong")
             console.log(err)
         })
        setLoginData({email:"", password:""})
@@ -54,6 +55,7 @@ export const Login = ()=>{
         }).then((res)=>{
             setShow(true)
         }).catch((err)=>{
+            alert("Something wrong")
             console.log(err)
         })
        setLoginData({email:"", password:""})
