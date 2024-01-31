@@ -7,9 +7,9 @@ export const Cart = ()=>{
     const data1 = [1,2,2,2,2,2,2,2,2,2,2]
 
     const [data, setData] = useState([])
-    const [product, setProduct] = useState([])
+    const [product] = useState([])
    
-    const navigate = useNavigate()
+   
 
 
     
