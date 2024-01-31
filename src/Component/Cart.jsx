@@ -23,7 +23,7 @@ export const Cart = ()=>{
             }
     
         }).then((res)=>{
-            console.log(res.data.ItemStore)
+            //console.log(res.data.ItemStore)
             setData(res.data.ItemStore)
         }).catch((err)=>{
             console.log(err)
