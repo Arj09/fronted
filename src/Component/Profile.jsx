@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Http } from "./Http";
 
 export const Profie = ()=>{
@@ -15,7 +15,7 @@ export const Profie = ()=>{
 
 
 
-    const handleUser = ()=>{
+    useEffect(()=>{
         Http.get("/api/user/current",{
             headers: {
                 "Content-Type": "application/json",
@@ -28,11 +28,7 @@ export const Profie = ()=>{
         }).catch((err)=>{
             console.log(err)
         })
-
-       
-    
-    
-    }
+    }, [])
     return(
         <div className="flex flex-row w-full mx-auto bg-red-800">
             <div className="w-1/12 bg-red-600 h-screen">
@@ -62,8 +58,8 @@ export const Profie = ()=>{
                 {
                     select === 'profile' && (
                         <div className=" flex flex-col w-4/5 mx-auto my-3 justify-between">
-                            <text>Username : </text>
-                            <text>Email  : Arjunkushwah@gmail.com</text>
+                            <text>{`Username : ${user?.username}`}</text>
+                            <text>{`Email : ${user?.email}`}</text>
 
                         </div>
 
