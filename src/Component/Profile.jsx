@@ -37,30 +37,20 @@ export const Profie = ()=>{
             </div>
             <div className=" flex flex-col  h-96 my-3 w-4/5 mx-auto text-center text-white">
                 {
-                    select == 'profile' ? (
+                    select === 'profile' && (
                         <div className=" flex flex-col w-4/5 mx-auto my-3 justify-between">
                             <text>Username : Arjun kushwah</text>
                             <text>Email  : Arjunkushwah@gmail.com</text>
 
                         </div>
 
-                    ):(
-                        <div className=" hidden">a</div>
                     )
                 }
                 {
-                    select == 'order' ? (
-                        <div>order</div>
-                    ):(
-                        <div className=" hidden"></div>
-                    )
+                    select === 'order' && <div>order</div> 
                 }
                 {
-                    select == 'history' ? (
-                        <div>history</div>
-                    ):(
-                        <div className=" hidden"></div>
-                    )
+                    select === 'history' && <div>history</div> 
                 }
                 
 

@@ -55,10 +55,18 @@ export const Image = ()=>{
         <>
         <text>working on image</text>
 
-        <form onSubmit={SubmitImage} action="/image-upload" enctype="multipart/form-data" >
+        <form onSubmit={SubmitImage} action="/image-upload" enctype="multipart/form-data" className=" w-4/5 flex flex-col mx-auto my-5 gap-y-5 " >
             
-            <input type="file" accept="image/*" onChange={handleImage} />
-            <button className=" px-2 py-1.5 bg-orange-400 text-white">Submit</button>
+            <div className=" w-4/5 border-2 border-red-400 h-24 text-center flex flex-col justify-center mx-auto ">
+            <input type="file" accept="image/*" onChange={handleImage}  className=" text-center flex flex-row mx-auto">
+
+                
+            </input>
+
+            
+
+            </div>
+            <button className=" w-4/5 px-2 py-1.5 bg-orange-400 mx-auto text-white">Submit</button>
         </form>
 
         <div className=" flex flex-col w-4/5 mx-auto my-5">

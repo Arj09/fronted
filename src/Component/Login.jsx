@@ -47,7 +47,7 @@ export const Login = ()=>{
 
     const SumbitRegisterdata = (e)=>{
         e.preventDefault();
-        Http.post("/api/user/login", {
+        Http.post("/api/user/register", {
             username : registerData.username,
             email : registerData.email,
             password : registerData.password

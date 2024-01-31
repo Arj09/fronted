@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./ContextAPI/context";
+import { Http } from "./Http";
 
 
 
@@ -27,19 +28,35 @@ export const Navbar = ()=>{
         setSearchIcon(false)
     }
     const handleGotoCart = ()=>{
-        navigate("/cart")
+        if(!localStorage.getItem("Token")){
+            navigate("/login")
+        }
+        else{
+            navigate("/cart")
+        }
     }
     const handleLogout = ()=>{
         setLogin(false)
         localStorage.removeItem('Token')
-        
-
-        
+        navigate("/")
+    
     }
 
     const handleLogin = ()=>{
         navigate("/login")
     }
+
+
+    useEffect(()=>{
+        if(localStorage.getItem("Token")){
+            setLogin(true)
+
+        }else{
+            setLogin(false)
+        }
+        
+        
+    },[2000])
 
     console.log(login)
   
@@ -49,7 +66,7 @@ export const Navbar = ()=>{
    
     return(
         <>
-        <div className="  bg-orange-400 w-full  h-20 flex flex-row justify-between px-5 text-center align-middle py-5 relative">
+        <div className="  bg-orange-500 w-full  h-20 flex flex-row justify-between px-5 text-center align-middle py-5 relative">
 
                 {
                     searchIcon ? (
