@@ -70,7 +70,7 @@ export const Login = ()=>{
                     <form onSubmit={SubmitLoginData} className=" flex flex-col w-4/5 h-96 mt-32 text-center bg-red-400 mx-auto gap-y-6 rounded lg:w-1/5 md:w-2/5 ">
                         <text className="text-white  text-center text-3xl mt-10">MiniStore</text>
                         <input className=" w-4/5 mx-auto h-10 rounded pl-3  " placeholder="Enter email"  name="email" value={loginData.email || ""} onChange={handleData1} />
-                        <input className=" w-4/5 mx-auto h-10 rounded pl-3  " placeholder="Enter password"  name="password" value={loginData.password || ""} onChange={handleData1} />
+                        <input type="password" className=" w-4/5 mx-auto h-10 rounded pl-3  " placeholder="Enter password"  name="password" value={loginData.password || ""} onChange={handleData1} />
                         <button className=" w-4/5 mx-auto px-2 py-1.5 bg-orange-500 text-white cursor-pointer">Login</button>
                         <text className=" pb-5 text-white cursor-pointer " onClick={(e)=>setShow(false)}>Register</text>
                     </form>
@@ -79,7 +79,7 @@ export const Login = ()=>{
                         <text className="text-white  text-center text-3xl mt-10">MiniStore</text>
                         <input className=" w-4/5 mx-auto h-10 rounded pl-3  " placeholder="Enter username"  name="username" value={registerData.username || ""} onChange={handleData} />
                         <input className=" w-4/5 mx-auto h-10 rounded pl-3  " placeholder="Enter email"  name="email" value={registerData.email || ""} onChange={handleData} />
-                        <input className=" w-4/5 mx-auto h-10 rounded pl-3  " placeholder="Enter password"  name="password" value={registerData.password || ""} onChange={handleData} />
+                        <input type="password" className=" w-4/5 mx-auto h-10 rounded pl-3  " placeholder="Enter password"  name="password" value={registerData.password || ""} onChange={handleData} />
                         <button className=" w-4/5 mx-auto px-2 py-1.5 bg-orange-500 text-white cursor-pointer">Register</button>
                         <text className=" pb-5 text-white cursor-pointer " onClick={(e)=>setShow(true)}> Click if already a customer</text>
                     </form>
