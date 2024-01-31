@@ -167,6 +167,7 @@ export const Navbar = ()=>{
                                 <>
                                 <Link to="/" >Home</Link>
                                 <Link to="/contact" >Contact US</Link>
+                                <Link to="/cart" >Cart</Link>
                                 <Link to="/login" >Login</Link>
                                 </>
 
