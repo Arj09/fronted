@@ -153,9 +153,9 @@ export const Navbar = ()=>{
                     <ul className=" flex flex-col justify-center mx-auto my-1 text-white cursor-pointer  gap-1">
                         <li>Home</li>
                         <li>Contact</li>
-                        <li>Profile</li>
+                        <li >Profile</li>
                         <li>Cart</li>
-                        <li>Logout</li>
+                        <li onClick={handleLogout}>Logout</li>
                     </ul>
 
                 </div>
