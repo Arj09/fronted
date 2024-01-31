@@ -11,7 +11,7 @@ export const Navbar = ()=>{
     const [Show, setShow] = useState(false)
     const [searchIcon, setSearchIcon] = useState(false)
     const navigate = useNavigate()
-    const { login, setLogin} = useContext(UserContext)
+    const { login, setLogin, noofProduct} = useContext(UserContext)
 
     const handleClose =()=>{
         setShow(false)
@@ -34,6 +34,7 @@ export const Navbar = ()=>{
         }
         else{
             navigate("/cart")
+            console.log( noofProduct)
         }
     }
     const handleLogout = ()=>{
@@ -159,7 +160,6 @@ export const Navbar = ()=>{
                                 <Link to="/" >Home</Link>
                                 <Link to="/contact" >Contact US</Link>
                                 <Link to="/profile" >Profile</Link>
-                                <Link to="/cart" >Cart</Link>
                                 <Link to="/"  onClick={handleLogout}>Logout</Link>
                                 
                                 </>
@@ -167,7 +167,6 @@ export const Navbar = ()=>{
                                 <>
                                 <Link to="/" >Home</Link>
                                 <Link to="/contact" >Contact US</Link>
-                                <Link to="/cart" >Cart</Link>
                                 <Link to="/login" >Login</Link>
                                 </>
 

@@ -71,14 +71,19 @@ export const ProductPage = ()=>{
 
         <div className=" w-4/5 mx-auto my-3 flex flex-row justify-between border-2 border-red-500 rounded px-5 py-1">
             <div className=" flex flex-row border-2 border-red-400 rounded  ">
-                <text className="bg-red-400 px-8  text-white align-middle pt-1.5   ">Filter</text>
+
+                <text className="bg-red-400 px-2  sm:px-8 sm:pt-1.5 text-white   ">Filter</text>
+                
                 <select className=" ">
+                    <option>Grocery</option>
+                    <option>Pulse</option>
+                    <option>Rice</option>
                     <option>Food</option>
                 </select>
                
 
             </div>
-            <button className=" bg-red-400  text-white  px-8 py-2 rounded" onClick={handleUser}>Add Product</button>
+            <button className=" bg-red-400  text-white   px-2 sm:py-2 sm:px-8 rounded" onClick={handleUser}>Add Product</button>
             
 
         </div>

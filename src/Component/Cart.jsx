@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Navbar } from "./Navbar";
 import { Http } from "./Http";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "./ContextAPI/context";
 
 export const Cart = ()=>{
     const data1 = [1,2,2,2,2,2,2,2,2,2,2]
 
     const [data, setData] = useState([])
     const [product] = useState([])
+    const { setnoofProduct }  = useContext(UserContext)
    
    
 
@@ -25,6 +28,7 @@ export const Cart = ()=>{
         }).then((res)=>{
             //console.log(res.data.ItemStore)
             setData(res.data.ItemStore)
+            setnoofProduct(res.data.ItemStore.length)
         }).catch((err)=>{
             console.log(err)
         })
