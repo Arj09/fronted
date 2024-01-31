@@ -12,20 +12,7 @@ export const Cart = ()=>{
     const navigate = useNavigate()
 
 
-    useEffect(()=>{
-        Http.get("/api/product",{
-            headers:{
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("Token")}`,
-            }
     
-        }).then((res)=>{
-            console.log(res.data)
-            
-        }).catch((err)=>{
-            console.log(err)
-        })
-    },[])
 
 
     useEffect(()=>{
@@ -36,14 +23,14 @@ export const Cart = ()=>{
             }
     
         }).then((res)=>{
-            console.log(res.data)
-            setData(res.data)
+            console.log(res.data.ItemStore)
+            setData(res.data.ItemStore)
         }).catch((err)=>{
             console.log(err)
         })
     },[])
 
-    console.log(data[0]?.ItemStore)
+    
 
 
    
@@ -57,7 +44,7 @@ export const Cart = ()=>{
 
             
             {
-                data[0]?.ItemStore.map((data, index)=>{
+                data.map((data, index)=>{
                     return(
                         <div key={index} className=" flex flex-col lg:flex-row md:flex-row  mx-auto my-5 w-4/5 border-2 border-red-400 rounded ">
                             <div  className="  border-red-400 border-b-2  h-48 w-full py-2 lg:w-1/5 lg:border-r-2 md:border-b-0 rounded   ">

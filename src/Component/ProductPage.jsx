@@ -58,8 +58,7 @@ export const ProductPage = ()=>{
             console.log(err)
         })
 
-        Http.get('/api/admin')
-    
+        
     
     }
 
