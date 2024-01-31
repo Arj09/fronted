@@ -58,7 +58,7 @@ export const Cart = ()=>{
                             <div >
                                 <text>{ product.filter((data1)=>(data1._id == data.product_id && data1.name )) }</text>
                                 <text>{data.quantity}</text>
-                                <div className="flex flex-row  my-2 ">
+                                <div className="flex flex-row  my-2 rounded ">
                                     <button className=" px-2 bg-red-400 text-white">+</button>
                                     <text className=" px-1 bg-red-400 text-white">1</text>
                                     <button className=" px-2 bg-red-400 text-white">-</button>
