@@ -69,7 +69,7 @@ export const ProductPage = ()=>{
         <>
         <Navbar/>
 
-        <div className=" w-4/5 mx-auto my-3 flex flex-row justify-between border-2 border-red-500 rounded px-5 py-1">
+        <div className=" w-4/5 mx-auto my-3 flex flex-row justify-between border-2 border-red-500 rounded sm:px-5 px-1 py-1">
             <div className=" flex flex-row border-2 border-red-400 rounded  ">
 
                 <text className="bg-red-400 px-2  sm:px-8 sm:pt-1.5 text-white   ">Filter</text>
