@@ -28,7 +28,7 @@ export const Profie = ()=>{
         }).catch((err)=>{
             console.log(err)
         })
-    }, [])
+    }, [2000])
     return(
         <div className="flex flex-row w-full mx-auto bg-red-800">
             <div className="w-1/12 bg-red-600 h-screen">

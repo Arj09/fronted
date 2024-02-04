@@ -8,6 +8,7 @@ import { UserContextProvider} from "./Component/ContextAPI/ContextProvider"
 import { Login } from './Component/Login';
 import { Navbar } from './Component/Navbar';
 import { Image } from './Component/Image';
+import { AddProduct } from './Component/AddProduct';
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Route path='contact' element={<Contact/>} />
       <Route path='nav' element={<Navbar/>} />
       <Route path='image' element={<Image/>} />
+      <Route path='addProduct' element={<AddProduct/>} />
     </Routes>
     
     

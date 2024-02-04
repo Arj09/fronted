@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Http } from "./Http";
 import { Navbar } from "./Navbar";
+import { useNavigate } from "react-router-dom";
 
 
 export const ProductPage = ()=>{
     const [data, setData] = useState([])
     const [userID, setUserID] = useState()
     const [admin, setAdmin] = useState([])
+
+    const navigate = useNavigate()
 
     useEffect(()=>{
         Http.get("/api/product",{
@@ -62,6 +65,10 @@ export const ProductPage = ()=>{
     
     }
 
+    const handleProduct =()=>{
+        navigate("/addProduct")
+    }
+
 
 
 
@@ -83,7 +90,7 @@ export const ProductPage = ()=>{
                
 
             </div>
-            <button className=" bg-red-400  text-white   px-2 sm:py-2 sm:px-8 rounded" onClick={handleUser}>Add Product</button>
+            <button className=" bg-red-400  text-white   px-2 sm:py-2 sm:px-8 rounded" onClick={handleProduct}>Add Product</button>
             
 
         </div>
