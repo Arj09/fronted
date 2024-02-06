@@ -6,6 +6,7 @@ import { Http } from "./Http";
 export const AddProduct = ()=>{
 
     const [data, setData] = useState({})
+    const [image, setImage] = useState('')
 
     const handleProduct =(e)=>{
         const name = e.target.name
@@ -14,21 +15,24 @@ export const AddProduct = ()=>{
 
     }
 
-    const handleImage =(e)=>{
-        setData(data=>({...data, ['image']: e.target.files[0]}))
-
-    }
+    
 
     const handleSubmit =  async(e)=>{
         e.preventDefault()
+        console.log(image)
 
         const formData = new FormData() 
-        formData.append("product", data.image)
+        formData.append("image", image)
+        formData.append("name", data.p_name)
+        formData.append("price", data.p_mrp)
+        formData.append("quantity", data.p_quantity)
+        formData.append("category", data.category)
 
         const result = await Http.post("api/product",
             formData,
             {
             headers: { "Content-Type": "multipart/form-data" },
+            Authorization: `Bearer ${localStorage.getItem("Token")}`,
             }
         ).then((res)=>{
             console.log(res.data)
@@ -36,6 +40,7 @@ export const AddProduct = ()=>{
            
         }).catch((err)=>{
             console.log(err)
+            console.log(formData)
         })
         
 
@@ -60,7 +65,7 @@ export const AddProduct = ()=>{
                 <option value="electronic">Electronic</option>
                 <option value="ice">Ice</option>
             </select>
-            <input type="file" accept="image/*" className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded"  onChange={handleImage} />
+            <input type="file" accept="image/*" className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded"  onChange={(e)=>setImage(e.target.files[0])} />
             <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5 mx-auto rounded text-white">Add Product</button>
 
         </form>

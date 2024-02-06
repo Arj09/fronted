@@ -8,11 +8,12 @@ export const Image = ()=>{
     const [data, setData] = useState([])
     const [count, setCount] = useState(0)
     const [show, setShow] = useState(false)
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState("")
+    const [category, setCategory] = useState("")
+    const [quantity, setQuantity] = useState("")
 
-    const handleImage = (e) =>{
-        console.log(e.target.files[0])
-        setImage(e.target.files[0])
-    }
+    
 
     
 
@@ -22,9 +23,14 @@ export const Image = ()=>{
 
         const formData = new FormData() 
         formData.append("product", image)
+        formData.append("name", name)
+        formData.append("price", price)
+        formData.append("quantity", quantity)
+        formData.append("category", category)
 
         const result = await Http.post("api/image-upload",
             formData,
+            
             {
             headers: { "Content-Type": "multipart/form-data" },
             }
@@ -32,8 +38,8 @@ export const Image = ()=>{
             setShow(true)
             console.log(res.data)
             console.log("sucessfully uploaded")
-            setCount(count+1)
-           setImage(' ')
+            setCount(count =>count +=1)
+           setImage('')
         }).catch((err)=>{
             console.log(err)
         })
@@ -81,8 +87,12 @@ export const Image = ()=>{
         }
         <form onSubmit={SubmitImage} action="/image-upload" enctype="multipart/form-data" className=" w-4/5 flex flex-col mx-auto my-5 gap-y-5 " >
             
-            <div className=" w-4/5 border-2 border-red-400 h-24 text-center flex flex-col justify-center mx-auto ">
-                <input type="file" accept="image/*" onChange={handleImage}  className=" text-center flex flex-row mx-auto"/>
+            <div className=" w-4/5 border-2 border-red-400 pt-10 text-center flex flex-col justify-center mx-auto ">
+                <input type="file" accept="image/*" onChange={(e)=>setImage(e.target.files[0])}  className=" text-center flex flex-row mx-auto"/>
+                <input className=" border-2 border-black mt-2 w-4/5 mx-auto mb-4" placeholder=" Enter name"  name=" name" onChange={(e)=>setName(e.target.value)} />
+                <input className=" border-2 border-black mt-2 w-4/5 mx-auto mb-4" placeholder=" Enter price"  name=" price" onChange={(e)=>setPrice(e.target.value)} />
+                <input className=" border-2 border-black mt-2 w-4/5 mx-auto mb-4" placeholder=" Enter category"  name=" category" onChange={(e)=>setCategory(e.target.value)} />
+                <input className=" border-2 border-black mt-2 w-4/5 mx-auto mb-4" placeholder=" Enter quantity"  name=" quantity" onChange={(e)=>setQuantity(e.target.value)} />
             </div>
             <button className=" w-4/5 px-2 py-1.5 bg-orange-400 mx-auto text-white">Submit</button>
         </form>
@@ -96,7 +106,8 @@ export const Image = ()=>{
                 return(
                     <>
                     <div>{data.image}</div>
-                    <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" />
+                    <img src={`http://localhost:5000/images/${data.image}`} alt="loading" />
+                    <text>{data.name}</text>
                     </>
                     
                 )
