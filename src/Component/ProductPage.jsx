@@ -100,7 +100,7 @@ export const ProductPage = ()=>{
                 data.map((data, index)=>{
                     return(
                         <div className=" w-11/12 h-96 border-2 border-red-600 rounded">
-                            <img alt="loading" src={data.image} className=" w-4/5 h-3/5 mx-auto py-2"/>
+                            <img alt="loading" src={`http://localhost:5000/images/${data.image}`} className=" w-4/5 h-3/5 mx-auto py-2 rounded"/>
 
                             <div className=" flex flex-col pl-5">
                                 <text>{data.name}</text>

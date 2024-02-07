@@ -103,6 +103,7 @@ export const Cart = ()=>{
                             <div  className=" w-4/5 flex flex-col pl-4 pt-2 pb-4 lg:pt-10 md:flex-row md:justify-between md:px-5   ">
                             <div >
                                 <text>{ product.filter((data1)=>(data1._id == data.product_id && data1.name )) }</text>
+                                 <text></text>
                                 
                                 <div className="flex flex-row  my-2 rounded ">
                                     <button className=" px-2 bg-red-400 text-white" onClick={()=>handleProductPlus(data.product_id)}>+</button>

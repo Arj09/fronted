@@ -7,33 +7,38 @@ export const AddProduct = ()=>{
 
     const [data, setData] = useState({})
     const [image, setImage] = useState('')
-
-    const handleProduct =(e)=>{
-        const name = e.target.name
-        const value = e.target.value
-        setData(data=>({...data, [name]: value}))
-
-    }
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState("")
+    const [mrp, setMrp] = useState("")
+    const [category, setCategory] = useState("")
+    const [quantity, setQuantity] = useState("")
 
     
 
-    const handleSubmit =  async(e)=>{
+    
+
+    const handleSubmit =  (e)=>{
         e.preventDefault()
         console.log(image)
 
         const formData = new FormData() 
         formData.append("image", image)
-        formData.append("name", data.p_name)
-        formData.append("price", data.p_mrp)
-        formData.append("quantity", data.p_quantity)
-        formData.append("category", data.category)
+        formData.append("name", name)
+        formData.append("price", mrp)
+        formData.append("quantity", quantity)
+        formData.append("category", category)
+        formData.append("mrp", mrp)
 
-        const result = await Http.post("api/product",
-            formData,
-            {
-            headers: { "Content-Type": "multipart/form-data" },
-            Authorization: `Bearer ${localStorage.getItem("Token")}`,
-            }
+
+        console.log(formData)
+
+        Http.post("api/product",formData,{
+            headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${localStorage.getItem("Token")}`,
+            },
+        }
+            
         ).then((res)=>{
             console.log(res.data)
            // setCount(count+1)
@@ -44,7 +49,7 @@ export const AddProduct = ()=>{
         })
         
 
-        setData({p_mrp:"", p_name:"", p_selling_price:"", category:"", image:''})
+       
         
 
     }
@@ -54,11 +59,12 @@ export const AddProduct = ()=>{
         <text className=" mx-auto text-white bg-red-600 py-3 w-4/5 flex flex-row text-center justify-center text-xl mt-5">Add Product</text>
         <form onSubmit={handleSubmit} action="/image-upload" enctype="multipart/form-data" className=" w-4/5 flex flex-col mx-auto my-5 border-2 border-red-400 gap-y-5 pt-10 pb-3  ">
 
-            <input placeholder=" Enter Product Name" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"   name="p_name" value={data.p_name} onChange={handleProduct} />
+            <input placeholder=" Enter Product Name" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="name" value={ name || "" } onChange={(e)=>setName(e.target.value)}  />
             
-            <input placeholder=" Enter Product Selling Price " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded" name="p_selling_price" value={data.p_selling_price} onChange={handleProduct}/>
-            <input placeholder=" Enter Product quantity " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded" name="p_quantity" value={data.p_quantity} onChange={handleProduct}/>
-            <select className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded" name="category" value={data.category} onChange={handleProduct} >
+            <input placeholder=" Enter Product Selling Price " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded" name="price" value={price || ""} onChange={(e)=>setPrice(e.target.value)}/>
+            <input placeholder=" Enter Product MRP " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded" name="mrp" value={mrp || ""} onChange={(e)=>setMrp(e.target.value)}/>
+            <input placeholder=" Enter Product quantity " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="quantity"   value={ quantity || ""} onChange={(e)=>setQuantity(e.target.value)}/>
+            <select className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded" name="category"  value={category || ""} onChange={(e)=>setCategory(e.target.value)} >
                 <option value="cata">Category</option>
                 <option value="Food">Food</option>
                 <option value="nodle ">Noodle</option>
