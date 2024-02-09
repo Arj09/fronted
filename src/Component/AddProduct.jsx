@@ -42,6 +42,7 @@ export const AddProduct = ()=>{
         ).then((res)=>{
             console.log(res.data)
            // setCount(count+1)
+           alert("Product Add Sucessfully")
            
         }).catch((err)=>{
             console.log(err)
