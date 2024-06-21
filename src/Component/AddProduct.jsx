@@ -66,11 +66,17 @@ export const AddProduct = ()=>{
             <input placeholder=" Enter Product MRP " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded" name="mrp" value={mrp || ""} onChange={(e)=>setMrp(e.target.value)}/>
             <input placeholder=" Enter Product quantity " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="quantity"   value={ quantity || ""} onChange={(e)=>setQuantity(e.target.value)}/>
             <select className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded" name="category"  value={category || ""} onChange={(e)=>setCategory(e.target.value)} >
-                <option value="cata">Category</option>
-                <option value="Food">Food</option>
-                <option value="nodle ">Noodle</option>
-                <option value="electronic">Electronic</option>
-                <option value="ice">Ice</option>
+            <option>Biscuit</option>
+                    <option>Hair oil</option>
+                    <option> Oil</option>
+                    <option>Pulse</option>
+                    <option>Rice</option>
+                    <option>Food</option>
+                    <option>chocolate</option>
+                    <option>Wheat floor</option>
+                    <option>Cool Drink</option>
+                    <option>Noodles</option>
+                    <option>Tea</option>
             </select>
             <input type="file" accept="image/*" className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded"  onChange={(e)=>setImage(e.target.files[0])} />
             <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5 mx-auto rounded text-white">Add Product</button>

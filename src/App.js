@@ -11,6 +11,8 @@ import { Image } from './Component/Image';
 import { AddProduct } from './Component/AddProduct';
 import { History } from './Component/History';
 import { Profile } from "./Component/Profile"
+import { Detail } from './Component/Detail';
+import { PaymentPage } from './Component/Payment';
 
 function App() {
 
@@ -26,6 +28,8 @@ function App() {
       <Route path='nav' element={<Navbar/>} />
       <Route path='image' element={<Image/>} />
       <Route path='addProduct' element={<AddProduct/>} />
+      <Route path='detail' element={<Detail/>}  />
+      <Route path='payment' element={<PaymentPage/>} />
       <Route path='profile'>
         <Route index element={ <Profile/>}/>
         <Route path='orderHistory' element={<History/>} />

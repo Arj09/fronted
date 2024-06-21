@@ -28,8 +28,11 @@ export const Navbar = ()=>{
     const handleCloseIcon = ()=>{
         setSearchIcon(false)
     }
+
+
     const handleGotoCart = ()=>{
-        if(!localStorage.getItem("Token")){
+
+        if(!login){
             navigate("/login")
         }
         else{
@@ -37,6 +40,7 @@ export const Navbar = ()=>{
             console.log( noofProduct)
         }
     }
+
     const handleLogout = ()=>{
         setLogin(false)
         localStorage.removeItem('Token')
@@ -73,7 +77,7 @@ export const Navbar = ()=>{
    
     return(
         <>
-        <div className="  bg-orange-500 w-full  h-20 flex flex-row justify-between px-5 text-center align-middle py-5 relative">
+        <div className="  bg-orange-500 w-full   h-20 flex flex-row justify-between px-5 text-center align-middle py-5 relative">
 
                 {
                     searchIcon ? (
@@ -92,21 +96,21 @@ export const Navbar = ()=>{
                         <text className=" text-3xl text-white cursor-pointer">MiniMart</text>
                     )
                 }
-                <input  className=" hidden rounded px-3 py-2 xl:w-96 lg:w-96 md:w-64 sm:w-36 sm:flex " placeholder="Search"/>
-                <div className="flex flex-row justify-evenly  gap-10 pt-2 text-white hidden lg:flex md:flex sm:flex ">
+                
+                <div className=" hidden  flex-row justify-evenly  gap-10 pt-2 text-white  lg:flex md:flex sm:flex  ">
                     <ul  className="flex flex-row justify-between gap-5 cursor-pointer ">
                         
-                        <li><a href="http://localhost:3000" >Home</a> </li>
-                        <li><a href="http://localhost:3000/contact" >About us</a> </li>
+                            <Link to="/" className=" hover:border-b-2 hover:border-white"  >Home</Link>
+                            <Link to="/contact"  className=" hover:border-b-2 hover:border-white"  >Contact Us</Link>
 
                         {
                             login ? (
                                 <>
-                                <li><a href="http://localhost:3000/profile" >Profile</a> </li>
-                                <li onClick={handleLogout}>Logout</li>
+                                    <Link to="/profile" className=" hover:border-b-2 hover:border-white"   >Profile</Link>
+                                    <Link onClick={handleLogout} className=" hover:border-b-2 hover:border-white"  >Logout</Link>
                                 </>
                             ) : (
-                                <li onClick={handleLogin}>login</li>
+                                <Link to="/login" className=" hover:border-b-2 hover:border-white" >Login</Link>
                                 )
                         }
 
@@ -153,7 +157,7 @@ export const Navbar = ()=>{
         </div>
         {
             Show ? (
-                <div className=" absolute w-full bg-orange-400 h-60 flex flex-col mx-auto top-0  ">
+                <div className=" absolute w-full bg-orange-500 h-60 flex flex-col mx-auto top-0  ">
                    
 
                     <text className="flex flex-row mx-10 my-5 text-white text-2xl justify-end" onClick={handleClose}>
@@ -165,7 +169,7 @@ export const Navbar = ()=>{
                         {
                             login ? (
                                 <>
-                                <Link to="/" >Home</Link>
+                                <Link to="/"  >Home</Link>
                                 <Link to="/contact" >Contact US</Link>
                                 <Link to="/profile" >Profile</Link>
                                 <Link to="/"  onClick={handleLogout}>Logout</Link>
