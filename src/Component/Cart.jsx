@@ -15,6 +15,7 @@ export const Cart = ()=>{
     const { setnoofProduct, setCartID }  = useContext(UserContext)
     const navigate = useNavigate()
     const [Length, setLength] = useState(0)
+    const [available, settAvailable] = useState()
    
    
 
@@ -161,7 +162,13 @@ export const Cart = ()=>{
         {
             Length > 0 && (
                 <div className=" w-4/5 flex flex-row mx-auto my-3 justify-center  ">
-                    <button className=" bg-red-400 text-white w-full text-xl py-3 rounded" onClick={handleOrder}>Order</button>
+                    {
+                        bill > 500 ? (
+                            <button className=" bg-red-400 text-white w-full text-xl py-3 rounded" onClick={handleOrder}>Order</button>
+                        ):(
+                            <button className=" bg-red-400 text-white w-full text-xl py-3 rounded" disabled onClick={handleOrder}>Order</button>
+                        )
+                    }
                 </div>
             )
         }

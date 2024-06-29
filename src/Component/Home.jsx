@@ -71,9 +71,13 @@ export const Home = ()=>{
     return(
         <div>
             <Navbar/>
-            <div className=" flex flex-row mx-auto w-4/5 my-5 border-2 file:border-gray-500 h-96  rounded">
-                <img src={front} className=" w-full rounded object-cover " />
+            <div className=" flex flex-row mx-auto w-4/5 my-5 border-2 file:border-gray-500 h-48 sm:h-96  ">
+                <img src={front} className=" w-full rounded object-fill sm:object-cover " />
             </div>
+
+           
+
+            <text className=" text-2xl flex flex-row w-4/5 mx-auto py-3.5 my-3  justify-center rounded bg-orange-500 text-white ">New Offer Coming Soon.</text>
 
             
 
@@ -85,7 +89,7 @@ export const Home = ()=>{
                 data?.map((data, index)=>{
                     return(
                         <div className=" shadow-md h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
-                            <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
+                            <img src={`http://localhost:5000/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
                             <div className=" flex flex-col pl-4">
                                 <text>{data.name}</text>
                                 <p>&#x20B9;{data.price}</p>
@@ -112,7 +116,7 @@ export const Home = ()=>{
                 data?.map((data, index)=>{
                     return(
                         <div className=" h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
-                            <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
+                            <img src={`http://localhost:5000/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
                             <div className=" flex flex-col pl-4">
                                 <text>{data.name}</text>
                                 <p>&#x20B9;{data.price}</p>

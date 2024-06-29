@@ -12,6 +12,7 @@ export const ProductPage = ()=>{
     const [category, setCategory] = useState("all")
     const [search, setSearch] = useState("all")
     const { login } = useContext(UserContext)
+    const [popup, setPopup] = useState(true)
     
 
     const navigate = useNavigate()
@@ -92,9 +93,16 @@ export const ProductPage = ()=>{
 
 
 
+    
+
+
+
+
     return(
         <>
         <Navbar/>
+
+        <input  placeholder=" Search" className=" border-2 border-black mx-auto my-5 flex pl-2 w-4/5 py-2 rounded" />
 
         <div className=" w-4/5 mx-auto my-3 flex flex-row justify-between border-2 bg-orange-500 border-red-500 rounded sm:px-5 px-1 py-1">
             <div className=" flex flex-row align-middle   ">
@@ -132,7 +140,7 @@ export const ProductPage = ()=>{
                     return(
                         <div className=" w-11/12 h-[450px] rounded  border-2 border-gray-100  hover:border hover:border-orange-500 ">
                             <div className=" w-full bg-gray-100 h-72 rounded ">
-                            <img alt="loading" src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} className="  w-4/5 h-full mx-auto py-6 bg-none   mix-blend-multiply object-contain"/>
+                            <img alt="loading" src={`http://localhost:5000/images/${data.image}`} className="  w-4/5 h-full mx-auto py-6 bg-none   mix-blend-multiply object-contain"/>
                             </div>
                            
 
@@ -140,16 +148,39 @@ export const ProductPage = ()=>{
                                 <text  >{data.name}</text>
                                 <p>&#x20B9;{data.price}</p>
                                
-                                <div className="my-2 "> 
-                                    <button className="px-3.5 py-1 bg-red-600 text-white rounded  hover:bg-orange-500 " onClick={()=>handleAddProduct(data._id)}>Add</button>
-                                </div>
+                                {
+                                    data._id == "667dc74888b25e2953448547" ? (
+                                        <div className="my-2 "> 
+                                            <button className="px-3.5 py-1 bg-red-600 text-white rounded  hover:bg-orange-500 " onClick={()=>handleAddProduct(data._id)}>Add more</button>
+                                        </div>
+
+                                    ):(
+                                        <div className="my-2 "> 
+                                            <button className="px-3.5 py-1 bg-red-600 text-white rounded  hover:bg-orange-500 " onClick={()=>handleAddProduct(data._id)}>Add</button>
+                                        </div>
+                                    )
+                                }
 
                             </div>
+                            
                         </div>
                     )
                 })
             }
             
+
+        </div>
+
+
+        <div className=" w-4/5 h-96 border-2 border-red-900 mx-auto my-10">
+        <button className=" px-5 py-2 border-2 border-red-800 m-20">Click</button>
+        {
+            popup && (
+                <div className=" w-4/5 border-2 border-red-800  h-20 mx-auto" >
+
+                </div>
+            )
+        }
 
         </div>
 
