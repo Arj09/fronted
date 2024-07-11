@@ -4,7 +4,8 @@ import { Navbar } from "./Navbar";
 import { Http } from "./Http";
 import { UserContext } from "./ContextAPI/context";
 
-import front  from "../Component/image/rename21.jpg"
+import front1  from "../Component/image/rename1.jpg"
+import front2  from "../Component/image/rename2.jpg"
 
 
 export const Home = ()=>{
@@ -12,6 +13,7 @@ export const Home = ()=>{
     const navigate = useNavigate()
     const [data, setData] = useState([])
     const { login } = useContext(UserContext)
+    const [p, setp] = useState(front1)
     
 
 
@@ -68,11 +70,44 @@ export const Home = ()=>{
     const handleProduct1 = ()=>{
         navigate("/productpage")
     }
+
+
+    const paper = [front1, front2]
+    
+    const handleBack = ()=>{
+        if(p==0){
+            setp(paper.length)
+        }
+        setp(paper[1])
+
+    }
+
+    const handlePlus = ()=>{
+        if(p>=paper.length-1){
+            setp(-1)
+        }
+        setp(paper[0])
+    }
+
+
     return(
         <div>
             <Navbar/>
-            <div className=" flex flex-row mx-auto w-4/5 my-5 border-2 file:border-gray-500 h-48 sm:h-96  ">
-                <img src={front} className=" w-full rounded object-fill sm:object-cover " />
+            
+
+            <div className=" relative  w-11/12 h-[250px]  md:h-[600px] my-10  mx-auto p-5  ">
+            
+                <img className="  w-full h-full object-cover"  src={p} />
+
+            
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10 absolute bg-red-800  rounded-full  text-white left-0 top-1/2 cursor-pointer" onClick={handleBack}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                </svg>
+            
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10 bg-red-800 rounded-full absolute right-0  text-white top-1/2 cursor-pointer" onClick={handlePlus}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                </svg>
+           
             </div>
 
            
@@ -89,7 +124,7 @@ export const Home = ()=>{
                 data?.map((data, index)=>{
                     return(
                         <div className=" shadow-md h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
-                            <img src={`http://localhost:5000/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
+                            <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
                             <div className=" flex flex-col pl-4">
                                 <text>{data.name}</text>
                                 <p>&#x20B9;{data.price}</p>
@@ -116,7 +151,7 @@ export const Home = ()=>{
                 data?.map((data, index)=>{
                     return(
                         <div className=" h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
-                            <img src={`http://localhost:5000/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
+                            <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
                             <div className=" flex flex-col pl-4">
                                 <text>{data.name}</text>
                                 <p>&#x20B9;{data.price}</p>

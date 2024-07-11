@@ -93,7 +93,7 @@ export const Navbar = ()=>{
                             
                         </div>
                     ):(
-                        <text className=" text-3xl text-white cursor-pointer">MiniMart</text>
+                        <text className=" text-4xl text-white cursor-pointer">MiniMart</text>
                     )
                 }
                 
@@ -157,7 +157,7 @@ export const Navbar = ()=>{
         </div>
         {
             Show ? (
-                <div className=" absolute w-full bg-orange-500 h-60 flex flex-col mx-auto top-0  ">
+                <div className=" absolute w-full bg-orange-500 h-60 flex flex-col mx-auto top-0 z-40  ">
                    
 
                     <text className="flex flex-row mx-10 my-5 text-white text-2xl justify-end" onClick={handleClose}>

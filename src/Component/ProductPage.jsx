@@ -13,6 +13,10 @@ export const ProductPage = ()=>{
     const [search, setSearch] = useState("all")
     const { login } = useContext(UserContext)
     const [popup, setPopup] = useState(true)
+    const [show, setShow] = useState(false)
+    const [productID , setProductID] = useState()
+
+    const [item, setItem] = useState('')
     
 
     const navigate = useNavigate()
@@ -50,6 +54,14 @@ export const ProductPage = ()=>{
                 },
             }).then((res)=>{
                 console.log(res,data)
+                setProductID(id)
+                setShow(true)
+
+                setTimeout(() => {
+                    setShow(false)
+            
+                }, 1000);
+
             }).catch((err)=>{
                 console.log(err
                     )
@@ -95,14 +107,19 @@ export const ProductPage = ()=>{
 
     
 
+    const handleSearch = ()=>{
 
+    }
 
 
     return(
         <>
         <Navbar/>
 
-        <input  placeholder=" Search" className=" border-2 border-black mx-auto my-5 flex pl-2 w-4/5 py-2 rounded" />
+        <div className=" w-4/5 mx-auto flex flex-row my-5 justify-center ">
+            <input  placeholder=" Search" className=" border-2 border-black    pl-2 w-4/5 py-2 rounded mr-5"  onChange={(e)=>setItem(e.target.value)} value={item}  />
+            <button className=" bg-red-700 text-white  rounded px-4 py-1.5 " onSubmit={handleSearch}>Search</button>
+        </div>
 
         <div className=" w-4/5 mx-auto my-3 flex flex-row justify-between border-2 bg-orange-500 border-red-500 rounded sm:px-5 px-1 py-1">
             <div className=" flex flex-row align-middle   ">
@@ -135,18 +152,29 @@ export const ProductPage = ()=>{
         <div  className=" grid grid-rows-1 grid-cols-1  w-5/5 gap-y-3 border-2 justify-between pl-10 mx-auto my-5 px-2 py-4   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:w-4/5 lg:border-slate-400 lg:border-2  cursor-pointer">
             {
                 data
+                .filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
                 .filter((data)=> category == "all" ? data : data.category === category)
+                
                 .map((data, index)=>{
                     return(
-                        <div className=" w-11/12 h-[450px] rounded  border-2 border-gray-100  hover:border hover:border-orange-500 ">
+                        <div className=" relative w-11/12 h-[450px] rounded  border-2 border-gray-100  hover:border hover:border-orange-500 ">
                             <div className=" w-full bg-gray-100 h-72 rounded ">
-                            <img alt="loading" src={`http://localhost:5000/images/${data.image}`} className="  w-4/5 h-full mx-auto py-6 bg-none   mix-blend-multiply object-contain"/>
+                            <img alt="loading" src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} className="  w-4/5 h-full mx-auto py-6 bg-none   mix-blend-multiply object-contain"/>
                             </div>
+                            
                            
 
                             <div className=" flex flex-col pl-5 py-3 ">
                                 <text  >{data.name}</text>
                                 <p>&#x20B9;{data.price}</p>
+
+                                {
+                                    show && productID == data._id ?  (
+                                        <label  className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-400 rounded px-4 py-1.5">Added</label>
+                                    ):(
+                                        <div className=" hidden"></div>
+                                    )
+                                }
                                
                                 {
                                     data._id == "667dc74888b25e2953448547" ? (
@@ -163,6 +191,8 @@ export const ProductPage = ()=>{
 
                             </div>
                             
+                            
+                            
                         </div>
                     )
                 })
@@ -172,17 +202,7 @@ export const ProductPage = ()=>{
         </div>
 
 
-        <div className=" w-4/5 h-96 border-2 border-red-900 mx-auto my-10">
-        <button className=" px-5 py-2 border-2 border-red-800 m-20">Click</button>
-        {
-            popup && (
-                <div className=" w-4/5 border-2 border-red-800  h-20 mx-auto" >
-
-                </div>
-            )
-        }
-
-        </div>
+       
 
         
         </>
