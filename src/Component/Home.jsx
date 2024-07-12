@@ -117,9 +117,9 @@ export const Home = ()=>{
             
 
 
-            <text className=" w-4/5 mx-auto flex flex-row text-2xl"> New add Product</text>
+            <text className=" w-11/12 sm:w-4/5 mx-auto flex flex-row text-2xl"> New add Product</text>
 
-            <div className=" grid grid-rows-1 grid-flow-col w-4/5 h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden ">
+            <div className=" grid grid-rows-1 grid-flow-col w-11/12 sm:w-4/5 h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden ">
             {
                 data?.map((data, index)=>{
                     return(
@@ -144,9 +144,9 @@ export const Home = ()=>{
             
 
 
-            <text className=" w-4/5 mx-auto flex flex-row text-2xl"> New add Product</text>
+            <text className=" w-11/12 sm:w-4/5 mx-auto flex flex-row text-2xl"> New add Product</text>
 
-            <div className=" grid grid-rows-1 grid-flow-col w-4/5 h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden">
+            <div className=" grid grid-rows-1 grid-flow-col w-11/12 sm:w-4/5  h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden">
             {
                 data?.map((data, index)=>{
                     return(
