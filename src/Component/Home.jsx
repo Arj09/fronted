@@ -100,11 +100,11 @@ export const Home = ()=>{
                 <img className="  w-full h-full object-cover"  src={p} />
 
             
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10 absolute bg-red-800  rounded-full  text-white left-0 top-1/2 cursor-pointer" onClick={handleBack}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7 sm:size-10 absolute bg-red-800  rounded-full  text-white left-0 top-1/2 cursor-pointer" onClick={handleBack}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                 </svg>
             
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-10 bg-red-800 rounded-full absolute right-0  text-white top-1/2 cursor-pointer" onClick={handlePlus}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7 sm:size-10 bg-red-800 rounded-full absolute right-0  text-white top-1/2 cursor-pointer" onClick={handlePlus}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                 </svg>
            
@@ -112,7 +112,7 @@ export const Home = ()=>{
 
            
 
-            <text className=" text-2xl flex flex-row w-4/5 mx-auto py-3.5 my-3  justify-center rounded bg-orange-500 text-white ">New Offer Coming Soon.</text>
+            <text className=" text-2xl flex flex-row w-11/12 sm:w-4/5 mx-auto py-3.5 my-3  justify-center rounded bg-orange-500 text-white ">New Offer Coming Soon.</text>
 
             
 
@@ -121,20 +121,26 @@ export const Home = ()=>{
 
             <div className=" grid grid-rows-1 grid-flow-col w-11/12 sm:w-4/5 h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden ">
             {
-                data?.map((data, index)=>{
-                    return(
-                        <div className=" shadow-md h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
-                            <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
-                            <div className=" flex flex-col pl-4">
-                                <text>{data.name}</text>
-                                <p>&#x20B9;{data.price}</p>
-                                <div className="my-2 ">
-                                    <button className="px-3 py-1 bg-red-600 text-white rounded hover:bg-orange-500" onClick={handleAddProduct}>Add</button>
+                data.length !=0 ?(
+                    data?.map((data, index)=>{
+                        return(
+                            <div className=" shadow-md h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
+                                <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
+                                <div className=" flex flex-col pl-4">
+                                    <text>{data.name}</text>
+                                    <p>&#x20B9;{data.price}</p>
+                                    <div className="my-2 ">
+                                        <button className="px-3 py-1 bg-red-600 text-white rounded hover:bg-orange-500" onClick={handleAddProduct}>Add</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                })
+                        )
+                    })
+
+                ):(
+                    <div>ok</div>
+
+                )
             }
 
                         <div className=" h-64 w-48 border-2 border-gray-400 rounded  hover:border-orange-500" onClick={handleProduct}>

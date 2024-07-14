@@ -133,7 +133,7 @@ export const Cart = ()=>{
                     return(
                         <div key={index} className=" flex flex-col lg:flex-row md:flex-row  mx-auto my-2 w-3/5 border-2 border-red-400 rounded ">
                             <div  className="  border-red-400 border-b-2  h-48 w-full px-2 py-2 lg:w-1/5 lg:border-r-2 md:border-b-0 rounded   ">
-                                <img alt="loading" src={`http://localhost:5000/images/${data.image}`}  className=" w-full h-full object-contain mix-blend-color-burn mix-blend-multiply" />
+                                <img alt="loading" src={`https://store-backend-o5qm.onrender.com/images/${data.image}`}  className=" w-full h-full object-contain mix-blend-color-burn mix-blend-multiply" />
                             </div>
                             <div  className=" w-4/5 flex flex-col pl-4 pt-2 pb-4 lg:pt-10 md:flex-row md:justify-between md:px-5   ">
                             <div >
