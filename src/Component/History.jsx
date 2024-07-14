@@ -9,6 +9,8 @@ export const History = ()=>{
 
     const [order, setOrder] = useState([])
 
+    const url = Http.getUri()
+
     useEffect(()=>{
         Http.get("/api/order",{
             headers:{
@@ -23,7 +25,7 @@ export const History = ()=>{
         })
     },[])
 
-
+    console.log(Http.getUri())
 
     return(
         <>
@@ -38,19 +40,21 @@ export const History = ()=>{
                             <text>{`Order date : ${data.order_date}`}</text>
                             <text>{`Order status : ${data.order_status}`}</text>
                             </div>
-                            <div className=" flex flex-row justify-between bg-blue-700 text-white p-2">
-                                <text>Item Name</text>
-                                <text>Quantity</text>
-                                <text>Price</text>
-
-                            </div>
+                            
                             {
                                 data.ItemStore.map((data)=>{
                                     return(
-                                        <div className=" flex flex-row justify-between bg-red-600 text-white p-2 ">
-                                            <text>{data.name}</text>
-                                            <text>{data.quantity}</text>
-                                            <text>{data.price}</text>
+                                        <div className=" w-[400px] h-[450px] rounded  border-2 border-gray-100  mx-auto  ">
+                                            <div className=" w-full bg-gray-100 h-72 rounded ">
+                                                <img alt="loading" src={`${Http.getUri()}/images/${data.image} ` } className="  w-4/5 h-full mx-auto py-6 bg-none   mix-blend-multiply object-contain"/>
+                                            </div>
+                                            <div className=" flex flex-col pl-5 pt-5  ">
+                                                <text className="">{data.name}</text>
+                                                <text>{`Quantity : ${data.quantity}`}</text>
+                                                <text>{`Price : ${data.price}`}</text>
+                                                
+
+                                            </div>
                                         </div>
 
                                     )

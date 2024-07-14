@@ -90,6 +90,8 @@ export const Home = ()=>{
     }
 
 
+    
+
     return(
         <div>
             <Navbar/>
@@ -125,7 +127,7 @@ export const Home = ()=>{
                     data?.map((data, index)=>{
                         return(
                             <div className=" shadow-md h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
-                                <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
+                                <img src={`${Http.getUri()}/images/${data.image} ` } alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
                                 <div className=" flex flex-col pl-4">
                                     <text>{data.name}</text>
                                     <p>&#x20B9;{data.price}</p>
@@ -157,7 +159,7 @@ export const Home = ()=>{
                 data?.map((data, index)=>{
                     return(
                         <div className=" h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
-                            <img src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
+                            <img src={`${Http.getUri()}/images/${data.image} ` } alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
                             <div className=" flex flex-col pl-4">
                                 <text>{data.name}</text>
                                 <p>&#x20B9;{data.price}</p>

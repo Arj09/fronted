@@ -30,8 +30,7 @@ export const AddProduct = ()=>{
         formData.append("mrp", mrp)
 
 
-        console.log(formData)
-
+      
         Http.post("api/product",formData,{
             headers: {
                 "Content-Type": "multipart/form-data",

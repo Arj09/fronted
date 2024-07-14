@@ -159,7 +159,7 @@ export const ProductPage = ()=>{
                     return(
                         <div className=" relative w-11/12 h-[450px] rounded  border-2 border-gray-100  hover:border hover:border-orange-500 ">
                             <div className=" w-full bg-gray-100 h-72 rounded ">
-                            <img alt="loading" src={`https://store-backend-o5qm.onrender.com/images/${data.image}`} className="  w-4/5 h-full mx-auto py-6 bg-none   mix-blend-multiply object-contain"/>
+                            <img alt="loading" src={`${Http.getUri()}/images/${data.image} ` } className="  w-4/5 h-full mx-auto py-6 bg-none   mix-blend-multiply object-contain"/>
                             </div>
                             
                            
