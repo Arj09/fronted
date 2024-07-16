@@ -122,7 +122,7 @@ export const Home = ()=>{
             <text className=" w-11/12 sm:w-4/5 mx-auto flex flex-row text-2xl"> New add Product</text>
 
             <div className=" grid grid-rows-1 grid-flow-col w-11/12 sm:w-4/5 h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden ">
-            {
+            {   
                 data.length !=0 ?(
                     data?.map((data, index)=>{
                         return(
@@ -140,22 +140,23 @@ export const Home = ()=>{
                     })
 
                 ):(
-                    <div>ok</div>
+                    <text className=" text-center pt-20 text-2xl">Loading...</text>
 
                 )
             }
 
-                        <div className=" h-64 w-48 border-2 border-gray-400 rounded  hover:border-orange-500" onClick={handleProduct}>
-                             <text className=" flex flex-row justify-center align-middle mx-auto pt-28 cursor-pointer text-blue-700  hover:text-orange-500 text-xl"  onClick={handleProduct}> More</text>
-                        </div>
+                        
             </div>
             
 
 
-            <text className=" w-11/12 sm:w-4/5 mx-auto flex flex-row text-2xl"> New add Product</text>
+            <div className=" flex flex-row justify-between w-4/5 mx-auto">
+                <text className=" text-3xl ">New Product</text>
+                <text className=" pt-5 text-blue-500 cursor-pointer">More</text>
+            </div>
 
             <div className=" grid grid-rows-1 grid-flow-col w-11/12 sm:w-4/5  h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden">
-            {
+            {   data.length !=0 ? (
                 data?.map((data, index)=>{
                     return(
                         <div className=" h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
@@ -169,12 +170,13 @@ export const Home = ()=>{
                             </div>
                         </div>
                     )
-                })
+                })  ):(
+                    <text className=" text-center pt-20 text-2xl">Loading...</text>
+
+                )
             }
 
-                        <div className=" h-64 w-48 border-2 border-gray-400 rounded hover:border-blue-500 " onClick={handleProduct}>
-                             <text className=" flex flex-row justify-center align-middle mx-auto pt-28 cursor-pointer  hover:text-orange-500 text-blue-700 text-xl" onClick={handleProduct}> More</text>
-                        </div>
+                        
             </div>
 
 

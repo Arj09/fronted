@@ -21,6 +21,8 @@ export const AddProduct = ()=>{
         e.preventDefault()
         console.log(image)
 
+        
+
         const formData = new FormData() 
         formData.append("image", image)
         formData.append("name", name)
@@ -29,8 +31,9 @@ export const AddProduct = ()=>{
         formData.append("category", category)
         formData.append("mrp", mrp)
 
-
-      
+        console.log(" it is form data",formData)
+        console.log(name)
+        
         Http.post("api/product",formData,{
             headers: {
                 "Content-Type": "multipart/form-data",

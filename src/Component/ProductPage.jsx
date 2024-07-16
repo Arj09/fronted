@@ -15,6 +15,7 @@ export const ProductPage = ()=>{
     const [popup, setPopup] = useState(true)
     const [show, setShow] = useState(false)
     const [productID , setProductID] = useState()
+    const [itemA, setItemA] = useState(true)
 
     const [item, setItem] = useState('')
     
@@ -150,12 +151,13 @@ export const ProductPage = ()=>{
         </div>
         
         <div  className=" grid grid-rows-1 grid-cols-1  w-5/5 gap-y-3 border-2 justify-between pl-10 mx-auto my-5 px-2 py-4   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:w-4/5 lg:border-slate-400 lg:border-2  cursor-pointer">
-            {
+            {   data.length !=0 ? (
                 data
                 .filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
-                .filter((data)=> category == "all" ? data : data.category === category)
                 
+                .filter((data)=> category == "all" ? data : data.category === category)
                 .map((data, index)=>{
+                    
                     return(
                         <div className=" relative w-11/12 h-[450px] rounded  border-2 border-gray-100  hover:border hover:border-orange-500 ">
                             <div className=" w-full bg-gray-100 h-72 rounded ">
@@ -177,25 +179,25 @@ export const ProductPage = ()=>{
                                 }
                                
                                 {
-                                    data._id == "667dc74888b25e2953448547" ? (
-                                        <div className="my-2 "> 
-                                            <button className="px-3.5 py-1 bg-red-600 text-white rounded  hover:bg-orange-500 " onClick={()=>handleAddProduct(data._id)}>Add more</button>
-                                        </div>
-
-                                    ):(
+                                    
                                         <div className="my-2 "> 
                                             <button className="px-3.5 py-1 bg-red-600 text-white rounded  hover:bg-orange-500 " onClick={()=>handleAddProduct(data._id)}>Add</button>
                                         </div>
-                                    )
+                                    
                                 }
 
                             </div>
+
+                            
                             
                             
                             
                         </div>
                     )
-                })
+                }) ):(
+
+                    <text>Loading</text>
+                )
             }
             
 
