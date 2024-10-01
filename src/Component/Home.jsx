@@ -6,6 +6,7 @@ import { UserContext } from "./ContextAPI/context";
 
 import front1  from "../Component/image/rename1.jpg"
 import front2  from "../Component/image/rename2.jpg"
+import front3  from "../Component/image/Rename5.png"
 
 
 export const Home = ()=>{
@@ -14,6 +15,13 @@ export const Home = ()=>{
     const [data, setData] = useState([])
     const { login } = useContext(UserContext)
     const [p, setp] = useState(front1)
+
+    const app = ["biscuit", "snake & chips", "cold drink", "dal tel sugar ", "rice", "aata", "noodles"]
+    const Category1 = [
+        {
+            "name":"Aata  Oil & Dal"
+        }
+    ]
     
 
 
@@ -111,48 +119,43 @@ export const Home = ()=>{
                 </svg>
            
             </div>
-
+ 
            
-
+            <text className=" text-2xl flex flex-row w-11/12 sm:w-4/5 mx-auto py-3.5 my-3  justify-center rounded bg-orange-500 text-white "> Minimum order amount Rs 500/-</text>
             <text className=" text-2xl flex flex-row w-11/12 sm:w-4/5 mx-auto py-3.5 my-3  justify-center rounded bg-orange-500 text-white ">New Offer Coming Soon.</text>
+
+            <div className=" flex flex-row  w-4/5 mx-auto  my-4">
+                <text className=" text-3xl ">Category</text>
+            </div>
+
+            <div className=" grid grid-rows-1 grid-cols-2   w-5/5 gap-y-3 border-none rounded pl-10 justify-between  mx-auto my-5 px-2 py-4   sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 lg:w-4/5 lg:border-slate-400 lg:border-2  cursor-pointer">
+                {
+                    app.map((data, index)=>{
+                        return(
+                            <div className=" w-[150px] h-[120px]  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 ">
+                             <div className=" w-full h-4/5  ">
+                                <img src={front3} className=" w-full h-full object-contain " />
+                            </div>
+                            <div className=" flex flex-col pl-2 ">
+                                <text className="  text-sm flex flex-row justify-center">{app[index]}</text>
+                            </div> 
+                               
+                            </div>
+                        )
+                    })
+                }
+            </div>
+
 
             
 
 
-            <text className=" w-11/12 sm:w-4/5 mx-auto flex flex-row text-2xl"> New add Product</text>
-
-            <div className=" grid grid-rows-1 grid-flow-col w-11/12 sm:w-4/5 h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden ">
-            {   
-                data.length !=0 ?(
-                    data?.map((data, index)=>{
-                        return(
-                            <div className=" shadow-md h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
-                                <img src={`${Http.getUri()}/images/${data.image} ` } alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
-                                <div className=" flex flex-col pl-4">
-                                    <text>{data.name}</text>
-                                    <p>&#x20B9;{data.price}</p>
-                                    <div className="my-2 ">
-                                        <button className="px-3 py-1 bg-red-600 text-white rounded hover:bg-orange-500" onClick={handleAddProduct}>Add</button>
-                                    </div>
-                                </div>
-                            </div>
-                        )
-                    })
-
-                ):(
-                    <text className=" text-center pt-20 text-2xl">Loading...</text>
-
-                )
-            }
-
-                        
-            </div>
             
 
 
             <div className=" flex flex-row justify-between w-4/5 mx-auto">
-                <text className=" text-3xl ">New Product</text>
-                <text className=" pt-5 text-blue-500 cursor-pointer">More</text>
+                <text className=" text-3xl "> All Product</text>
+                <text className=" pt-5 text-blue-500 cursor-pointer"> See more</text>
             </div>
 
             <div className=" grid grid-rows-1 grid-flow-col w-11/12 sm:w-4/5  h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden">
@@ -163,7 +166,7 @@ export const Home = ()=>{
                             <img src={`${Http.getUri()}/images/${data.image} ` } alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
                             <div className=" flex flex-col pl-4">
                                 <text>{data.name}</text>
-                                <p>&#x20B9;{data.price}</p>
+                                <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p>
                                 <div className="my-2 ">
                                     <button className="px-3 py-1 bg-red-600 text-white rounded  hover:bg-orange-500 " onClick={handleAddProduct}>Add</button>
                                 </div>
@@ -178,6 +181,12 @@ export const Home = ()=>{
 
                         
             </div>
+
+
+           
+
+            
+
 
 
 

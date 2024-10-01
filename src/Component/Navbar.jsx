@@ -93,7 +93,7 @@ export const Navbar = ()=>{
                             
                         </div>
                     ):(
-                        <text className=" text-4xl text-white cursor-pointer">MiniMart</text>
+                        <text className=" text-4xl text-white cursor-pointer">Chanchal Mart</text>
                     )
                 }
                 

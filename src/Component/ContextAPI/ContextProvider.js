@@ -9,6 +9,7 @@ export const UserContextProvider = ({children}) => {
     const [navOn, setNavOn] = useState(false)
     const [cartID, setCartID] = useState("") 
     const [search, setSearch] = useState("all")
+    const [item, setItem] = useState()
    
  
     

@@ -150,7 +150,7 @@ export const ProductPage = ()=>{
 
         </div>
         
-        <div  className=" grid grid-rows-1 grid-cols-1  w-5/5 gap-y-3 border-2 justify-between pl-10 mx-auto my-5 px-2 py-4   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:w-4/5 lg:border-slate-400 lg:border-2  cursor-pointer">
+        <div  className=" grid grid-rows-1 grid-cols-1  w-5/5 gap-y-3 border-none justify-between pl-10 mx-auto my-5 px-2 py-4   sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:w-4/5 lg:border-slate-400 lg:border-2  cursor-pointer">
             {   data.length !=0 ? (
                 data
                 .filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
@@ -168,7 +168,7 @@ export const ProductPage = ()=>{
 
                             <div className=" flex flex-col pl-5 py-3 ">
                                 <text  >{data.name}</text>
-                                <p>&#x20B9;{data.price}</p>
+                                <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p>
 
                                 {
                                     show && productID == data._id ?  (
@@ -182,9 +182,12 @@ export const ProductPage = ()=>{
                                     
                                         <div className="my-2 "> 
                                             <button className="px-3.5 py-1 bg-red-600 text-white rounded  hover:bg-orange-500 " onClick={()=>handleAddProduct(data._id)}>Add</button>
+                                           
+                                           
                                         </div>
                                     
                                 }
+                                
 
                             </div>
 

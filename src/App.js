@@ -13,6 +13,7 @@ import { History } from './Component/History';
 import { Profile } from "./Component/Profile"
 import { Detail } from './Component/Detail';
 import { PaymentPage } from './Component/Payment';
+import { Admin } from './Component/Admin';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route index element={<Home/>} />
+      <Route index element={<Admin/>} />
       <Route path='login' element={<Login/>}/>
       <Route path='productpage' element={<ProductPage/>} />
       <Route path='cart' element={<Cart/>} />

@@ -26,7 +26,7 @@ export const AddProduct = ()=>{
         const formData = new FormData() 
         formData.append("image", image)
         formData.append("name", name)
-        formData.append("price", mrp)
+        formData.append("price", price)
         formData.append("quantity", quantity)
         formData.append("category", category)
         formData.append("mrp", mrp)
@@ -80,6 +80,7 @@ export const AddProduct = ()=>{
                     <option>Noodles</option>
                     <option>Tea</option>
                     <option>Detergent Powder</option>
+                    <option>Chips</option>
             </select>
             <input type="file" accept="image/*" className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded"  onChange={(e)=>setImage(e.target.files[0])} />
             <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5 mx-auto rounded text-white">Add Product</button>
