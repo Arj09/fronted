@@ -4,7 +4,7 @@ import { Navbar } from "./Navbar";
 import { Http } from "./Http";
 import { UserContext } from "./ContextAPI/context";
 
-import front1  from "../Component/image/rename1.jpg"
+import front1  from "../Component/image/rename1.png"
 import front2  from "../Component/image/rename2.jpg"
 import front3  from "../Component/image/Rename5.png"
 
@@ -13,10 +13,10 @@ export const Home = ()=>{
     
     const navigate = useNavigate()
     const [data, setData] = useState([])
-    const { login } = useContext(UserContext)
-    const [p, setp] = useState(front1)
+    const { login,setmultisector, setCategory1 } = useContext(UserContext)
+    const [p, setp] = useState(front2)
 
-    const app = ["biscuit", "snake & chips", "cold drink", "dal tel sugar ", "rice", "aata", "noodles"]
+    const app = ["Atta , dal & rice", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate"]
     const Category1 = [
         {
             "name":"Aata  Oil & Dal"
@@ -76,6 +76,7 @@ export const Home = ()=>{
     }
 
     const handleProduct1 = ()=>{
+        setCategory1("all")
         navigate("/productpage")
     }
 
@@ -98,7 +99,48 @@ export const Home = ()=>{
     }
 
 
-    
+   
+
+    const handleCategory = (index)=>{
+        const  first = ["pulse", "Wheat floor", "rice"]
+        const second = ["detergent powder"]
+        const third = ["masale", "oil", ]
+        const forth =  ["Tea", "noodles"]
+        const fifth = ["jam","souce"]
+        const six = ["sweet", "chocolate"]
+        if( index == 0 ){
+            setmultisector(first)
+            setCategory1("all1")
+        }
+        if(index == 1){
+            setmultisector(second)
+            setCategory1("all1")
+        }
+        if(index == 2){
+            setmultisector(third)
+            setCategory1("all1")
+        }
+        if(index == 3){
+            setmultisector(forth)
+            setCategory1("all1")
+        }
+        if(index == 4){
+            setmultisector(fifth)
+            setCategory1("all1")
+        }
+        if(index == 5){
+            setmultisector(six)
+            setCategory1("all1")
+        }
+        navigate("/ProductPage")
+
+    }
+
+  
+    const handleGotoProductpage = ()=>{
+        setCategory1("all")
+        navigate("/productpage")
+    }
 
     return(
         <div>
@@ -124,6 +166,11 @@ export const Home = ()=>{
             <text className=" text-2xl flex flex-row w-11/12 sm:w-4/5 mx-auto py-3.5 my-3  justify-center rounded bg-orange-500 text-white "> Minimum order amount Rs 500/-</text>
             <text className=" text-2xl flex flex-row w-11/12 sm:w-4/5 mx-auto py-3.5 my-3  justify-center rounded bg-orange-500 text-white ">New Offer Coming Soon.</text>
 
+
+
+            
+
+            
             <div className=" flex flex-row  w-4/5 mx-auto  my-4">
                 <text className=" text-3xl ">Category</text>
             </div>
@@ -132,9 +179,9 @@ export const Home = ()=>{
                 {
                     app.map((data, index)=>{
                         return(
-                            <div className=" w-[150px] h-[120px]  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 ">
+                            <div className=" w-[150px] h-[120px]  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 "  onClick={()=>handleCategory(index)}>
                              <div className=" w-full h-4/5  ">
-                                <img src={front3} className=" w-full h-full object-contain " />
+                                <img src={front1} className=" w-full h-full object-contain " />
                             </div>
                             <div className=" flex flex-col pl-2 ">
                                 <text className="  text-sm flex flex-row justify-center">{app[index]}</text>
@@ -155,7 +202,7 @@ export const Home = ()=>{
 
             <div className=" flex flex-row justify-between w-4/5 mx-auto">
                 <text className=" text-3xl "> All Product</text>
-                <text className=" pt-5 text-blue-500 cursor-pointer"> See more</text>
+                <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
             <div className=" grid grid-rows-1 grid-flow-col w-11/12 sm:w-4/5  h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden">

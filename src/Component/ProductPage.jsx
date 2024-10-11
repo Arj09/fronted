@@ -10,14 +10,24 @@ export const ProductPage = ()=>{
     const [userID, setUserID] = useState()
     const [admin, setAdmin] = useState([])
     const [category, setCategory] = useState("all")
+   
     const [search, setSearch] = useState("all")
-    const { login } = useContext(UserContext)
+    const { login, mutlisector, category1 } = useContext(UserContext)
     const [popup, setPopup] = useState(true)
     const [show, setShow] = useState(false)
     const [productID , setProductID] = useState()
     const [itemA, setItemA] = useState(true)
 
     const [item, setItem] = useState('')
+  
+   
+
+
+
+    
+    console.log(mutlisector[0])
+    
+
     
 
     const navigate = useNavigate()
@@ -76,6 +86,10 @@ export const ProductPage = ()=>{
         
     }
 
+
+
+
+
     
 
     const handleUser = ()=>{
@@ -111,6 +125,15 @@ export const ProductPage = ()=>{
     const handleSearch = ()=>{
 
     }
+
+
+
+   
+
+
+
+   
+
 
 
     return(
@@ -154,8 +177,8 @@ export const ProductPage = ()=>{
             {   data.length !=0 ? (
                 data
                 .filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
-                
-                .filter((data)=> category == "all" ? data : data.category === category)
+                .filter((data)=> category == "all" ? data : data.category.toLowerCase() === category.toLowerCase())
+                .filter((data)=> category1 == "all" ? data :  data.category.toLowerCase() == mutlisector[0] || data.category.toLowerCase() == mutlisector[1])
                 .map((data, index)=>{
                     
                     return(
@@ -168,7 +191,11 @@ export const ProductPage = ()=>{
 
                             <div className=" flex flex-col pl-5 py-3 ">
                                 <text  >{data.name}</text>
-                                <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p>
+                                {
+                                    data.mrp > data.price ? <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p>&#x20B9;<text>{data.mrp}</text></p>
+                                }
+
+                                
 
                                 {
                                     show && productID == data._id ?  (

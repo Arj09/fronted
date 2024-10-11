@@ -10,11 +10,14 @@ export const UserContextProvider = ({children}) => {
     const [cartID, setCartID] = useState("") 
     const [search, setSearch] = useState("all")
     const [item, setItem] = useState()
+  
+    const [mutlisector, setmultisector] = useState("")
+    const [category1, setCategory1] = useState("all")
    
  
     
     return(
-        <UserContext.Provider value={{ search, setSearch, login, setLogin, data, setData, noofProduct, setnoofProduct, cartID, setCartID}}>
+        <UserContext.Provider value={{mutlisector,setmultisector, category1, setCategory1,search, setSearch, login, setLogin, data, setData, noofProduct, setnoofProduct, cartID, setCartID}}>
         {children}
         </UserContext.Provider>
     )
