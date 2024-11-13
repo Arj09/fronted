@@ -4,8 +4,9 @@ import { Navbar } from "./Navbar";
 import { Http } from "./Http";
 import { UserContext } from "./ContextAPI/context";
 
+
+import front2  from "../Component/image/banner.png"
 import front1  from "../Component/image/rename1.png"
-import front2  from "../Component/image/rename2.jpg"
 import front3  from "../Component/image/Rename5.png"
 
 
@@ -147,9 +148,9 @@ export const Home = ()=>{
             <Navbar/>
             
 
-            <div className=" relative  w-11/12 h-[250px]  md:h-[600px] my-10  mx-auto p-5  ">
+            <div className=" relative  w-11/12 h-[250px]  md:h-[600px] my-10  mx-auto p-5 rounded  ">
             
-                <img className="  w-full h-full object-cover"  src={p} />
+                <img className="  w-full h-full object-cover rounded"  src={p} />
 
             
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7 sm:size-10 absolute bg-red-800  rounded-full  text-white left-0 top-1/2 cursor-pointer" onClick={handleBack}>
@@ -163,8 +164,7 @@ export const Home = ()=>{
             </div>
  
            
-            <text className=" text-2xl flex flex-row w-11/12 sm:w-4/5 mx-auto py-3.5 my-3  justify-center rounded bg-orange-500 text-white "> Minimum order amount Rs 500/-</text>
-            <text className=" text-2xl flex flex-row w-11/12 sm:w-4/5 mx-auto py-3.5 my-3  justify-center rounded bg-orange-500 text-white ">New Offer Coming Soon.</text>
+           
 
 
 
@@ -213,7 +213,9 @@ export const Home = ()=>{
                             <img src={`${Http.getUri()}/images/${data.image} ` } alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
                             <div className=" flex flex-col pl-4">
                                 <text>{data.name}</text>
-                                <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p>
+                                {
+                                    data.mrp > data.price ? <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p>&#x20B9;<text>{data.mrp}</text></p>
+                                }
                                 <div className="my-2 ">
                                     <button className="px-3 py-1 bg-red-600 text-white rounded  hover:bg-orange-500 " onClick={handleAddProduct}>Add</button>
                                 </div>
