@@ -181,7 +181,7 @@ export const Home = ()=>{
                         return(
                             <div className=" w-[150px] h-[120px]  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 "  onClick={()=>handleCategory(index)}>
                              <div className=" w-full h-4/5  ">
-                                <img src={front1} className=" w-full h-full object-contain " />
+                                <img src={front1} alt="ok" className=" w-full h-full object-contain " />
                             </div>
                             <div className=" flex flex-col pl-2 ">
                                 <text className="  text-sm flex flex-row justify-center">{app[index]}</text>
