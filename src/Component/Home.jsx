@@ -17,7 +17,7 @@ export const Home = ()=>{
     const { login,setmultisector, setCategory1 } = useContext(UserContext)
     const [p, setp] = useState(front2)
 
-    const app = ["Atta , dal & rice", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate"]
+    const app = ["Atta , dal & rice", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate","Atta , dal & rice", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate"]
     const Category1 = [
         {
             "name":"Aata  Oil & Dal"
@@ -148,7 +148,7 @@ export const Home = ()=>{
             <Navbar/>
             
 
-            <div className=" relative  w-11/12 h-[250px]  md:h-[600px] my-10  mx-auto p-5 rounded  ">
+            <div className=" relative w-11/12  h-96 mx-auto rounded my-10   ">
             
                 <img className="  w-full h-full object-cover rounded"  src={p} />
 
@@ -175,11 +175,11 @@ export const Home = ()=>{
                 <text className=" text-3xl ">Category</text>
             </div>
 
-            <div className=" grid grid-rows-1 grid-cols-2   w-5/5 gap-y-3 border-none rounded pl-10 justify-between  mx-auto my-5 px-2 py-4   sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 lg:w-4/5 lg:border-slate-400 lg:border-2  cursor-pointer">
+            <div className=" grid grid-rows-1 grid-cols-2    w-5/5 gap-2  rounded justify-between  mx-auto my-5 p-2 border-none   sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 lg:w-4/5 lg:border-slate-400 lg:border-2  cursor-pointer">
                 {
                     app.map((data, index)=>{
                         return(
-                            <div className=" w-[150px] h-[120px]  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 "  onClick={()=>handleCategory(index)}>
+                            <div className=" w-5/5 h-[120px]  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 "  onClick={()=>handleCategory(index)}>
                              <div className=" w-full h-4/5  ">
                                 <img src={front1} alt="ok" className=" w-full h-full object-contain " />
                             </div>
@@ -205,31 +205,233 @@ export const Home = ()=>{
                 <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
-            <div className=" grid grid-rows-1 grid-flow-col w-11/12 sm:w-4/5  h-72 gap-x-2 pt-2   mx-auto my-2 overflow-scroll overflow-x-scroll overflow-y-hidden">
-            {   data.length !=0 ? (
-                data?.map((data, index)=>{
-                    return(
-                        <div className=" h-64 w-48 border-2 border-gray-400 rounded hover:border-orange-500 hover:text-orange-500" onClick={handleProduct1}>
-                            <img src={`${Http.getUri()}/images/${data.image} ` } alt="loading" className=" w-4/5 h-2/5 mx-auto py-2 object-contain"/>
-                            <div className=" flex flex-col pl-4">
-                                <text>{data.name}</text>
+            <div className="w-11/12  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
+                {  data.length !=0 ? ( 
+                    data?.map((data, index)=>{
+                        return(
+                            <div className=" relative rounded w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
+                                
+                                
+                                <div className=" w-5/5 h-[120px] rounded ">
+                                    <img className="w-4/5 h-full mx-auto  object-contain rounded"  src={`${Http.getUri()}/images/${data.image} ` } />
+                                </div>
+                                
+                                <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
+                                    <text className=" text-sm">{data.name} </text>
+
+                                </div>
+                                
+                                <select className=" py-0.5 border-2 rounded hover:border-red-300">
+                                    <option>1Kg</option>
+                                   
+                                </select>
+                                
+                                <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
                                 {
                                     data.mrp > data.price ? <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p>&#x20B9;<text>{data.mrp}</text></p>
                                 }
-                                <div className="my-2 ">
-                                    <button className="px-3 py-1 bg-red-600 text-white rounded  hover:bg-orange-500 " onClick={handleAddProduct}>Add</button>
+                                    <button className=" px-2 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    
+
                                 </div>
                             </div>
-                        </div>
+
+                        )
+                    })):(
+                        <text className=" text-center pt-20 text-2xl">Loading...</text>
+    
                     )
-                })  ):(
-                    <text className=" text-center pt-20 text-2xl">Loading...</text>
+                }
 
-                )
-            }
 
-                        
             </div>
+
+
+
+            <div className=" flex flex-row justify-between w-4/5 mx-auto mt-5">
+                <text className=" font-medium text-2xl "> Pulse</text>
+                <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
+            </div>
+
+            <div className="w-11/12  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
+                {  data.length !=0 ? ( 
+                    data?.filter((data)=>(data.category=="Pulse"))
+                    .map((data, index)=>{
+                        return(
+                            <div className=" relative rounded w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
+                                
+                                
+                                <div className=" w-5/5 h-[120px] rounded ">
+                                    <img className="w-4/5 h-full mx-auto  object-contain rounded"  src={`${Http.getUri()}/images/${data.image} ` } />
+                                </div>
+                                
+                                <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
+                                    <text className=" text-sm">{data.name} </text>
+
+                                </div>
+                                
+                                <select className=" py-0.5 border-2 rounded hover:border-red-300">
+                                    <option>1Kg</option>
+                                   
+                                </select>
+                                
+                                <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
+                                {
+                                    data.mrp > data.price ? <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p>&#x20B9;<text>{data.mrp}</text></p>
+                                }
+                                    <button className=" px-2 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    
+
+                                </div>
+                            </div>
+
+                        )
+                    })):(
+                        <text className=" text-center pt-20 text-2xl">Loading...</text>
+    
+                    )
+                }
+
+
+            </div>
+
+
+
+
+            <div className=" flex flex-row justify-between w-4/5 mx-auto mt-5">
+                <text className=" font-medium text-2xl "> Snakes & Chips</text>
+                <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
+            </div>
+
+            <div className="w-11/12  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
+                {  data.length !=0 ? ( 
+                    data?.filter((data)=>(data.category.toLowerCase()=="chips"))
+                    .map((data, index)=>{
+                        return(
+                            <div className=" relative rounded w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
+                                
+                                
+                                <div className=" w-5/5 h-[120px] rounded ">
+                                    <img className="w-4/5 h-full mx-auto  object-contain rounded"  src={`${Http.getUri()}/images/${data.image} ` } />
+                                </div>
+                                
+                                <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
+                                    <text className=" text-sm">{data.name} </text>
+
+                                </div>
+                                
+                                <select className=" py-0.5 border-2 rounded hover:border-red-300">
+                                    <option>1Kg</option>
+                                   
+                                </select>
+                                
+                                <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
+                                {
+                                    data.mrp > data.price ? <p className="py-1.5">&#x20B9;<text className=" py-1.5 pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p className=" py-1.5">&#x20B9;<text className="py-1.5">{data.mrp}</text></p>
+                                }
+                                    <button className=" px-2 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    
+
+                                </div>
+                            </div>
+
+                        )
+                    })):(
+                        <text className=" text-center pt-20 text-2xl">Loading...</text>
+    
+                    )
+                }
+
+
+            </div>
+
+
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+           
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div className=" bg-red-700 w-5/5">
+
+            <div className=" w-4/5  bg-red-700  mx-auto mt-5 grid grid-rows-1 grid-cols-1 sm:grid-cols-4 gap-x-4 p-2 gap-y-4  ">
+                
+                <div className=" w-5/5 border-red-600 border-2 rounded flex flex-col p-2 text-white ">
+                    <text className=" font-medium"> MiniStore</text>
+                    <text>Help</text>
+                    <text>About US</text>
+                </div>
+
+
+
+                <div className=" w-5/5 border-red-600 border-2 rounded flex flex-col p-2 text-white ">
+                    <text className=" font-medium"> Product</text>
+                    <text></text>
+                </div>
+
+
+                <div className=" w-5/5 border-red-600 border-2 rounded flex flex-col p-2 text-white ">
+                    <text className=" font-medium"> Category</text>
+                    <text>Dry Fruits, Masala & Oil</text>
+                    <text>Atta, Rice & Dal</text>
+                    <text>Sweets & Chocolate</text>
+                    <text>Dairy & Bread</text>
+                    <text>Cleaning Essentials</text>
+                    <text>Sauces & Spreads</text>
+                    <text>Instant Food & Breakfast</text>
+                </div>
+
+
+                <div className=" w-5/5 border-red-600 border-2 rounded flex flex-col p-2 text-white ">
+                    <text className=" font-medium text-white"> Service in Gwalior City Part</text>
+                    <text>Veerpur</text>
+                    <text>Maheshpura</text>
+                    <text>Nichlapura</text>
+                    <text>Savariyadham</text>
+                    <text>Sikandar Kampoo</text>
+                    <text>Baharbigha</text>
+                    
+                </div>
+
+
+
+
+            </div>
+            </div>
+           
 
 
            

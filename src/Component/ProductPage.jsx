@@ -234,6 +234,43 @@ export const ProductPage = ()=>{
         </div>
 
 
+        <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 grid-flow-row mx-auto border-none w-5/5 sm:w-11/12 md:w-4/5 p-2 my-5">
+            {
+                data.map((data, index)=>{
+                    return(
+                        <div className=" w-5/5 rounded border-2 hover:border-red-700 px-1 py-2 flex flex-col">
+                            <div className=" w-5/5 h-[150px] rounded ">
+                                <img className="w-4/5 h-full mx-auto  object-contain rounded"  src={`${Http.getUri()}/images/${data.image} ` } />
+                            </div>
+
+                            <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
+                                    <text className=" text-sm">{data.name} </text>
+
+                                </div>
+                                
+                                <select className=" py-0.5 border-2 rounded hover:border-red-300">
+                                    <option>1Kg</option>
+                                   
+                                </select>
+                                
+                                <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
+                                {
+                                    data.mrp > data.price ? <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p>&#x20B9;<text>{data.mrp}</text></p>
+                                }
+                                    <button className=" px-2 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    
+
+                                </div>
+                            
+
+                        </div>
+                    )
+                })
+            }
+
+        </div>
+
+
        
 
         
