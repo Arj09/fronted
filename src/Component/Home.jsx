@@ -16,8 +16,10 @@ export const Home = ()=>{
     const [data, setData] = useState([])
     const { login,setmultisector, setCategory1 } = useContext(UserContext)
     const [p, setp] = useState(front2)
+    const [boxShow, setBoxshow] = useState(false)
+    const [boxID, setBoxID] = useState()
 
-    const app = ["Atta , dal & rice", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate","Atta , dal & rice", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate"]
+    const app = ["Atta , dal & rice", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate","Dry fruit", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate"]
     const Category1 = [
         {
             "name":"Aata  Oil & Dal"
@@ -45,6 +47,7 @@ export const Home = ()=>{
     const handleAddProduct = (id)=>{
 
         login ?(
+            
             Http.post('/api/cart',{
                 product_id : id,
                 quantity : 1
@@ -143,6 +146,19 @@ export const Home = ()=>{
         navigate("/productpage")
     }
 
+
+    const handleBox =(id)=>{
+        setBoxID(id)
+        boxShow ? setBoxID() : setBoxID(id)
+        boxShow ? setBoxshow(false) : setBoxshow(true)
+        
+
+    }
+    const handleShowBox =()=>{
+        boxShow ? setBoxshow(false) : setBoxshow(true)
+        
+    }
+
     return(
         <div>
             <Navbar/>
@@ -205,7 +221,7 @@ export const Home = ()=>{
                 <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
-            <div className="w-11/12  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
+            <div className="w-5/5  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
                 {  data.length !=0 ? ( 
                     data?.map((data, index)=>{
                         return(
@@ -221,16 +237,13 @@ export const Home = ()=>{
 
                                 </div>
                                 
-                                <select className=" py-0.5 border-2 rounded hover:border-red-300">
-                                    <option>1Kg</option>
-                                   
-                                </select>
+                                <text className=" w-5/5 flex flex-row  rounded p-0.5 ">1Pcs</text>
                                 
                                 <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
                                 {
                                     data.mrp > data.price ? <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p>&#x20B9;<text>{data.mrp}</text></p>
                                 }
-                                    <button className=" px-2 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded">Add</button>
                                     
 
                                 </div>
@@ -253,7 +266,7 @@ export const Home = ()=>{
                 <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
-            <div className="w-11/12  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
+            <div className="w-5/5  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
                 {  data.length !=0 ? ( 
                     data?.filter((data)=>(data.category=="Pulse"))
                     .map((data, index)=>{
@@ -270,16 +283,13 @@ export const Home = ()=>{
 
                                 </div>
                                 
-                                <select className=" py-0.5 border-2 rounded hover:border-red-300">
-                                    <option>1Kg</option>
-                                   
-                                </select>
+                                <text className=" w-5/5 flex flex-row  rounded p-0.5 ">1Pcs</text>
                                 
                                 <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
                                 {
                                     data.mrp > data.price ? <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p>&#x20B9;<text>{data.mrp}</text></p>
                                 }
-                                    <button className=" px-2 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded">Add</button>
                                     
 
                                 </div>
@@ -303,7 +313,7 @@ export const Home = ()=>{
                 <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
-            <div className="w-11/12  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
+            <div className="w-5/5  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
                 {  data.length !=0 ? ( 
                     data?.filter((data)=>(data.category.toLowerCase()=="chips"))
                     .map((data, index)=>{
@@ -320,16 +330,17 @@ export const Home = ()=>{
 
                                 </div>
                                 
-                                <select className=" py-0.5 border-2 rounded hover:border-red-300">
-                                    <option>1Kg</option>
-                                   
-                                </select>
+                                
+                                
+                               
+                                <text className=" w-5/5 flex flex-row  rounded p-0.5 ">1Pcs</text>
+                                 
                                 
                                 <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
                                 {
                                     data.mrp > data.price ? <p className="py-1.5">&#x20B9;<text className=" py-1.5 pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p className=" py-1.5">&#x20B9;<text className="py-1.5">{data.mrp}</text></p>
                                 }
-                                    <button className=" px-2 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded">Add</button>
                                     
 
                                 </div>
