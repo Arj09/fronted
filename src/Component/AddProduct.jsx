@@ -91,6 +91,48 @@ export const AddProduct = ()=>{
 
         </form>
 
+        <div className=" flex flex-col rounded w-4/5 mx-auto border-2 p-4 mb-10 gap-3">
+            <input placeholder=" Enter Product name" className=" pl-2 w-4/5 m-auto rounded py-2  border-2" />
+            
+            <input placeholder=" Enter Product MRP" className=" pl-2 w-4/5 m-auto rounded py-2  border-2" />
+            <input placeholder=" Enter Product Sale Price" className=" pl-2 w-4/5 m-auto rounded py-2  border-2" />
+            <input placeholder=" Enter Product Quantity" className=" pl-2 w-4/5 m-auto rounded py-2  border-2" />
+            <input placeholder=" Enter Product expairy" className=" pl-2 w-4/5 m-auto rounded py-2  border-2" />
+
+            <div className=" w-4/5   mx-auto gap-2 grid grid-cols-1 md:grid-cols-2 grid-rows-1 rounded">
+
+            <div className="   w-5/5 flex flex-col sm:flex-row gap-x-1   ">
+                <label className=" w-1/5 border-2 py-2 rounded px-2">Category</label>
+                <select className=" w-4/5 border-2 py-2 rounded px-2">
+                    <option>Paneer</option>
+                    <option>Paneer 1</option>
+                    <option>Paneer 2</option>
+                </select>
+
+            </div>
+
+            <div className="   w-5/5 flex flex-row gap-x-1  ">
+                <label className=" w-1/5 border-2 py-2 rounded px-2">Type</label>
+                <select className=" w-4/5 border-2 py-2 rounded px-2">
+                    <option>Paneer</option>
+                    <option>Paneer 1</option>
+                    <option>Paneer 2</option>
+                </select>
+
+            </div>
+           
+            
+            </div>
+            <input type="file" accept="image/*" className=" border-2 py-2 pl-2 w-4/5 mx-auto rounded"  />
+            <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5 mx-auto rounded text-white">Add Product</button>
+
+
+
+
+        </div>
+
+           
+
 
         </>
     )

@@ -14,10 +14,12 @@ export const Home = ()=>{
     
     const navigate = useNavigate()
     const [data, setData] = useState([])
-    const { login,setmultisector, setCategory1 } = useContext(UserContext)
+    const { login,setmultisector, setCategory1, noofProduct, setnoofProduct } = useContext(UserContext)
     const [p, setp] = useState(front2)
     const [boxShow, setBoxshow] = useState(false)
     const [boxID, setBoxID] = useState()
+    const [show, setShow] = useState(false)
+    const [productID , setProductID] = useState()
 
     const app = ["Atta , dal & rice", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate","Dry fruit", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate"]
     const Category1 = [
@@ -58,7 +60,17 @@ export const Home = ()=>{
                     Authorization: `Bearer ${localStorage.getItem("Token")}`,
                 },
             }).then((res)=>{
-                console.log(res,data)
+                setnoofProduct(res.data.ItemStore.length)
+                setProductID(id)
+                setShow(true)
+                
+                
+
+                setTimeout(() => {
+                    setShow(false)
+            
+                }, 1000);
+
             }).catch((err)=>{
                 console.log(err
                     )
@@ -164,7 +176,7 @@ export const Home = ()=>{
             <Navbar/>
             
 
-            <div className=" relative w-11/12  h-96 mx-auto rounded my-10   ">
+            <div className=" relative w-11/12 h-40 sm:h-96 mx-auto rounded my-10   ">
             
                 <img className="  w-full h-full object-cover rounded"  src={p} />
 
@@ -232,18 +244,26 @@ export const Home = ()=>{
                                     <img className="w-4/5 h-full mx-auto  object-contain rounded"  src={`${Http.getUri()}/images/${data.image} ` } />
                                 </div>
                                 
+                                {
+                                    show && productID == data._id ?  (
+                                        <label  className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white rounded px-10 py-1.5">Added</label>
+                                    ):(
+                                        <div className=" hidden"></div>
+                                    )
+                                }
+                                
                                 <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
                                     <text className=" text-sm">{data.name} </text>
 
                                 </div>
                                 
-                                <text className=" w-5/5 flex flex-row  rounded p-0.5 ">1Pcs</text>
+                                
                                 
                                 <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
                                 {
                                     data.mrp > data.price ? <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p>&#x20B9;<text>{data.mrp}</text></p>
                                 }
-                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded" onClick={()=>handleAddProduct(data._id)}>Add</button>
                                     
 
                                 </div>
@@ -277,19 +297,26 @@ export const Home = ()=>{
                                 <div className=" w-5/5 h-[120px] rounded ">
                                     <img className="w-4/5 h-full mx-auto  object-contain rounded"  src={`${Http.getUri()}/images/${data.image} ` } />
                                 </div>
+
+                                {
+                                    show && productID == data._id ?  (
+                                        <label  className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white rounded px-10 py-1.5">Added</label>
+                                    ):(
+                                        <div className=" hidden"></div>
+                                    )
+                                }
                                 
                                 <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
                                     <text className=" text-sm">{data.name} </text>
 
                                 </div>
                                 
-                                <text className=" w-5/5 flex flex-row  rounded p-0.5 ">1Pcs</text>
                                 
                                 <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
                                 {
                                     data.mrp > data.price ? <p>&#x20B9;<text className=" pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p>&#x20B9;<text>{data.mrp}</text></p>
                                 }
-                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded"onClick={()=>handleAddProduct(data._id)}>Add</button>
                                     
 
                                 </div>
@@ -329,18 +356,26 @@ export const Home = ()=>{
                                     <text className=" text-sm">{data.name} </text>
 
                                 </div>
+
+                                {
+                                    show && productID == data._id ?  (
+                                        <label  className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white rounded px-10 py-1.5">Added</label>
+                                    ):(
+                                        <div className=" hidden"></div>
+                                    )
+                                }
                                 
                                 
                                 
                                
-                                <text className=" w-5/5 flex flex-row  rounded p-0.5 ">1Pcs</text>
+                                
                                  
                                 
                                 <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
                                 {
                                     data.mrp > data.price ? <p className="py-1.5">&#x20B9;<text className=" py-1.5 pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p className=" py-1.5">&#x20B9;<text className="py-1.5">{data.mrp}</text></p>
                                 }
-                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded">Add</button>
+                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded" onClick={()=>handleAddProduct(data._id)}>Add</button>
                                     
 
                                 </div>

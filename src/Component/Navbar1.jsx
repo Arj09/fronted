@@ -83,7 +83,7 @@ export const Navbar1 = ()=>{
                             <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                         </svg>
 
-                        <Link  onClick={handleLogout}>Logout</Link>
+                        <Link to={"/"}  onClick={handleLogout}>Logout</Link>
                     </div>
                 </div>    
 
