@@ -207,7 +207,7 @@ export const Home = ()=>{
                 {
                     app.map((data, index)=>{
                         return(
-                            <div className=" w-5/5 h-[120px]  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 "  onClick={()=>handleCategory(index)}>
+                            <div className=" w-5/5 h-[120px] shadow-lg shadow-orange-300  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 "  onClick={()=>handleCategory(index)}>
                              <div className=" w-full h-4/5  ">
                                 <img src={front1} alt="ok" className=" w-full h-full object-contain " />
                             </div>
@@ -237,7 +237,7 @@ export const Home = ()=>{
                 {  data.length !=0 ? ( 
                     data?.map((data, index)=>{
                         return(
-                            <div className=" relative rounded w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
+                            <div className=" relative rounded w-[200px] shadow-lg shadow-orange-300 border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
                                 
                                 
                                 <div className=" w-5/5 h-[120px] rounded ">
@@ -291,7 +291,7 @@ export const Home = ()=>{
                     data?.filter((data)=>(data.category=="Pulse"))
                     .map((data, index)=>{
                         return(
-                            <div className=" relative rounded w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
+                            <div className=" relative rounded shadow-lg shadow-orange-300 w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
                                 
                                 
                                 <div className=" w-5/5 h-[120px] rounded ">
@@ -340,12 +340,12 @@ export const Home = ()=>{
                 <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
-            <div className="w-5/5  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
+            <div className="w-5/5  md:w-4/5  mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
                 {  data.length !=0 ? ( 
                     data?.filter((data)=>(data.category.toLowerCase()=="chips"))
                     .map((data, index)=>{
                         return(
-                            <div className=" relative rounded w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
+                            <div className=" relative rounded shadow-lg shadow-orange-300 w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
                                 
                                 
                                 <div className=" w-5/5 h-[120px] rounded ">

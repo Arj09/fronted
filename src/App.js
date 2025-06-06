@@ -22,7 +22,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route index element={<Home/>} />
-      <Route index element={<Admin/>} />
+      <Route path='admin' element={<Admin/>} />
       <Route path='login' element={<Login/>}/>
       <Route path='productpage' element={<ProductPage/>} />
       <Route path='cart' element={<Cart/>} />

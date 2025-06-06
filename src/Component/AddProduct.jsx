@@ -1,6 +1,8 @@
-import React  from "react";
+import React, { useContext }  from "react";
 import { useState } from "react";
 import { Http } from "./Http";
+import { UserContext } from "./ContextAPI/context";
+import { useNavigate } from "react-router-dom";
 
 
 export const AddProduct = ()=>{
@@ -12,11 +14,39 @@ export const AddProduct = ()=>{
     const [mrp, setMrp] = useState("")
     const [category, setCategory] = useState("")
     const [quantity, setQuantity] = useState("")
+    const { editProductID , productEdit }  = useContext(UserContext)
+    const navigate = useNavigate()
     
 
     
 
-    
+    const  HandleProductEdit = (e) =>{
+        e.preventDefault()
+
+        Http.put(`api/product/${editProductID._id}`,{
+
+            price : data.mrp
+        },{
+            headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${localStorage.getItem("Token")}`,
+            },
+        }
+            
+        ).then((res)=>{
+            console.log(res.data)
+           // setCount(count+1)
+           alert("Product Add Sucessfully")
+           navigate("/admin")
+           
+           
+        }).catch((err)=>{
+            console.log(err)
+        
+            
+        })
+
+    }
 
     const handleSubmit =  (e)=>{
         e.preventDefault()
@@ -58,10 +88,20 @@ export const AddProduct = ()=>{
 
     }
 
+    const handleEditdata =(e)=>{
+        const name = e.target.name;
+        const value = e.target.value ;
+
+        setData(data=>({...data, [name]:value}))
+
+    }
+
+
+  
     return(
         <>
-        <text className=" mx-auto text-white bg-red-600 py-3 w-4/5 flex flex-row text-center justify-center text-xl mt-5">Add Product</text>
-        <form onSubmit={handleSubmit} action="/image-upload" enctype="multipart/form-data" className=" w-4/5 flex flex-col mx-auto my-5 border-2 border-red-400 gap-y-5 pt-10 pb-3  ">
+        <text className=" mx-auto text-white bg-red-600 py-3 w-4/5 flex flex-row text-center justify-center text-xl mt-5">{productEdit ? `Edit Product Detail Page` :` Add Product Detail Page`}</text>
+        <form onSubmit={productEdit ? HandleProductEdit : handleSubmit} action="/image-upload" enctype="multipart/form-data" className=" w-4/5 flex flex-col mx-auto my-5 border-2 border-red-400 gap-y-5 pt-10 pb-3  ">
 
             <input placeholder=" Enter Product Name" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="name" value={ name || "" } onChange={(e)=>setName(e.target.value)}  />
             
@@ -88,6 +128,25 @@ export const AddProduct = ()=>{
             </select>
             <input type="file" accept="image/*" className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded"  onChange={(e)=>setImage(e.target.files[0])} />
             <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5 mx-auto rounded text-white">Add Product</button>
+
+        </form>
+
+
+
+        <form  onSubmit={HandleProductEdit} className=" w-4/5 border-2 rounded p-2 mx-auto my-5 flex flex-col gap-2">
+            <input placeholder=" Enter Product Name" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="mrp" value={ data.mrp || ""  }onChange={handleEditdata}  />
+
+            <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5  mx-auto rounded text-white">Add Product</button>
+        
+
+
+
+
+
+
+
+
+
 
         </form>
 
