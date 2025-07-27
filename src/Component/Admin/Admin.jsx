@@ -234,11 +234,11 @@ export const Admin = ()=>{
 
 
                 <div className=" grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 grid-flow-row mx-auto border-none w-5/5 sm:w-11/12 md:w-4/5 p-2 my-5">
-                            {   data.length !=0 ? (
+                            {  
                                 data
-                                .filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
-                                .filter((data)=> category == "all" ? data : data.category.toLowerCase() === category.toLowerCase())
-                                .filter((data)=> category1 == "all" ? data :  data.category.toLowerCase() == mutlisector[0] || data.category.toLowerCase() == mutlisector[1])
+                                //.filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
+                               // .filter((data)=> category == "all" ? data : data.category.toLowerCase() === category.toLowerCase())
+                               // .filter((data)=> category1 == "all" ? data :  data.category.toLowerCase() == mutlisector[0] || data.category.toLowerCase() == mutlisector[1])
                                 .map((data, index)=>{
                                     return(
                                         <div className=" relative w-5/5 rounded border-2 shadow-lg shadow-orange-200 hover:border-red-700 px-1 py-2 flex flex-col">
@@ -279,9 +279,7 @@ export const Admin = ()=>{
                                         </div>
                                     )
                                 })
-                                ):(
-                                    <text>Loading</text> 
-                                )
+                                
                             }
                 
                         </div>

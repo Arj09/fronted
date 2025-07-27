@@ -276,7 +276,8 @@ export const Home = ()=>{
 
             <div className="w-5/5  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
                 {  data.length !=0 ? ( 
-                    data?.filter((data)=>(data.category=="Pulse"))
+                    data?.filter((data)=>(data.category =="Atta, dal & Rice"))
+                    .filter((data)=>data.subcategory =="dal")
                     .map((data, index)=>{
                         return(
                             <div className=" relative rounded shadow-lg shadow-orange-300 w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
@@ -332,6 +333,67 @@ export const Home = ()=>{
                 {  data.length !=0 ? ( 
                     data?.filter((data)=>(data.category =="Chips & Namkeen"))
                     .filter((data)=>data.subcategory =="Chips")
+                    .map((data, index)=>{
+                        return(
+                            <div className=" relative rounded shadow-lg shadow-orange-300 w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
+                                
+                                
+                                <div className=" w-5/5 h-[120px] rounded relative  ">
+                                    <img className="w-4/5 h-full mx-auto  object-contain rounded"  src={`${Http.getUri()}/images/${data.image} ` } />
+                                    
+                                </div>
+
+
+                                
+                                <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
+                                    <text className=" text-sm">{data.name} </text>
+
+                                </div>
+
+                                {
+                                    show && productID == data._id ?  (
+                                        <label  className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-red-600 text-white rounded px-10 py-1.5">Added</label>
+                                    ):(
+                                        <div className=" hidden"></div>
+                                    )
+                                }
+                                
+                                
+                                
+                               
+                                
+                                 
+                                
+                                <div className=" w-5/5 flex flex-row justify-between    rounded p-1 " >
+                                {
+                                    data.mrp > data.price ? <p className="py-1.5">&#x20B9;<text className=" py-1.5 pr-1 line-through">{data.mrp}</text>{data.price}</p> : <p className=" py-1.5">&#x20B9;<text className="py-1.5">{data.mrp}</text></p>
+                                }
+                                    <button className=" px-3 py-1.5 text-white bg-red-700  rounded" onClick={()=>handleAddProduct(data._id)}>Add</button>
+                                    
+
+                                </div>
+                            </div>
+
+                        )
+                    })):(
+                        <text className=" text-center pt-20 text-2xl">Loading...</text>
+    
+                    )
+                }
+
+
+            </div>
+
+
+            <div className=" flex flex-row justify-between w-4/5 mx-auto mt-5">
+                <text className=" font-medium text-sm md:text-2xl ">Dairy Milk Silk </text>
+                <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
+            </div>
+
+            <div className="w-5/5  md:w-4/5  mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
+                {  data.length !=0 ? ( 
+                    data?.filter((data)=>(data.category =="Chocolate & Ice Cream"))
+                    .filter((data)=>data.subcategory =="Chocolate")
                     .map((data, index)=>{
                         return(
                             <div className=" relative rounded shadow-lg shadow-orange-300 w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">

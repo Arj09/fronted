@@ -204,13 +204,13 @@ export const ProductPage = ()=>{
         
 
 
-        <div className=" w-4/5 mx-auto p-2 rounded grid grid-flow-row grid-cols-5 gap-1.5  ">
+        <div className=" w-4/5 mx-auto p-2 rounded grid grid-flow-row grid-cols-3 sm:grid-cols-4 md:grid-cols-5  gap-1.5  ">
                     
             {
                 cate.map((data, index)=>{
                     return(
                         <div className=" w-5/5 border-2  rounded p-1.5 flex justify-center ">
-                            <text className=" cursor-pointer" onClick={()=>handledata(data.category_item,data.category_name )}>{data.category_name}</text>
+                            <text className=" text-sm cursor-pointer" onClick={()=>handledata(data.category_item,data.category_name )}>{data.category_name}</text>
                         </div>
                     )
                 })
@@ -228,14 +228,14 @@ export const ProductPage = ()=>{
 
        
 
-        <div className=" flex flex-row w-4/5   mx-auto rounded">
-            <div className=" w-1/12 border-2 border-r-0 flex flex-col gap-y-1.5 p-1 rounded  ">
+        <div className=" flex flex-row w-5/5 md:w-4/5    mx-auto rounded">
+            <div className=" w-2.5/12 border-2 border-r-0 flex flex-col gap-y-1.5 p-1 rounded  ">
                   
 
                     {
                         sub.map((data, index)=>{
                             return(
-                                <div className=" w-5/5 border-2  rounded p-1.5  cursor-pointer justify-center flex" onClick={()=>handleSubCategory(data.item_name)}>
+                                <div className=" w-5/5 border-2  rounded p-0.5 md:p-1.5  cursor-pointer justify-center flex" onClick={()=>handleSubCategory(data.item_name)}>
                                     <text className=" text-xs text-center"  >{data.item_name}</text>
                                 </div>
                     )
@@ -248,7 +248,7 @@ export const ProductPage = ()=>{
 
 
 
-            <div className=" w-11/12  border-2 grid grid-flow-row grid-cols-5 gap-1.5 p-1 rounded  ">
+            <div className=" w-11/12  border-2   p-1 rounded grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 grid-flow-row  ">
                 {
                     data
                     .filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
