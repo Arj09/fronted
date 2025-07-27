@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home } from './Component/Home';
-import { ProductPage } from './Component/ProductPage';
+import { ProductPage } from './Component/ProductPage1';
 import { Contact } from './Component/Contact';
 import { Cart } from './Component/Cart';
 
@@ -13,7 +13,7 @@ import { History } from './Component/History';
 import { Profile } from "./Component/Profile"
 import { Detail } from './Component/Detail';
 import { PaymentPage } from './Component/Payment';
-import { Admin } from './Component/Admin';
+import { Admin } from './Component/Admin/Admin';
 
 function App() {
 

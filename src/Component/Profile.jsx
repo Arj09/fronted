@@ -14,7 +14,7 @@ export const Profile = ()=>{
     const handledata = (e) =>{
         const name = e.target.name;
         const value = e.target.value;
-        setUserdata(userdata=>({...userdata, [name] : value}))
+        setData(data=>({...data, [name] : value}))
  
     }
 
@@ -32,7 +32,7 @@ export const Profile = ()=>{
                 Authorization: `Bearer ${localStorage.getItem("Token")}`,
             }
         }).then((res)=>{
-            setData(res.data)
+            setUserdata(res.data)
             console.log(res.data)
         }).catch((err)=>{
             console.log(err)
@@ -41,17 +41,26 @@ export const Profile = ()=>{
     
 
     const handleUserinfo = (e) =>{
-        console.log(userdata)
         e.preventDefault()
+
         Http.put("/api/user/profile",{
+
+            mobile_no : data.mobile ? data.mobile : userdata.mobile_no,
+            username : data.username ? data.username : userdata.username,
+            pin_no : data.pincode ? data.pincode : userdata.pin_no,
+            address : data.address ? data.address : userdata.address,
+            email : data.email ? data.email : userdata.email
+
+        },
+        {
             headers:{
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem("Token")}`,
             }
-        },{
-            username :userdata.name
         }).then((res)=>{
+            alert("Suc")
             setData(res.data)
+            setData({mobile:"", pincode:"", email :"", address:"", username:''})
             console.log(res.data)
         }).catch((err)=>{
             console.log(err)
@@ -64,46 +73,53 @@ export const Profile = ()=>{
 
 
     return(
-        <>
-        <Navbar1/>
-        <div className=" flex flex-col lg:absolute top-0  right-0  bg-orange-500 h-screen   w-full   lg:w-10/12 ">
-            
-            <div className=" flex flex-col mx-auto my-4 gap-y-3 text-xl rounded  border-red-600 border-2 py-5 w-11/12 h-96 mt-10  px-10 text-white">
-                <text className="  text-2xl text-black">Personal Information</text>
-               
-                {
-                    show ? (
-                        <div className=" flex flex-col "> 
-                            <div className=" flex-row flex justify-end">
-                                <button onClick={handleButton} className="  rounded bg-blue-400 text-white px-4 py-1.5 ">Update Information</button>
-                            </div>
-                            <text>{`Username : ${data.username}`}</text>
+        <div className=" flex flex-row">
+        <div className="  w-2/12 ">
+            <Navbar1/>
 
-                        </div>
-
-                    ):(
-
-                        
-
-                        <div className=" flex flex-col gap-1 "> 
-                            
-                            <input className=" rounded py-1 pl-1" placeholder=" Enter username" name="username" value={userdata.username} onChange={handledata}  />
-                            
-                            <button onClick={handleUserinfo} className=" w-1/5 my-2 rounded bg-blue-400 text-white px-4 py-1.5 ">Update Information</button>
-                        </div>
-
-                    )
-                }
-
-
-
-
-                
-
-                
-
-            </div>
         </div>
-        </>
+        <div className=" w-10/12 bg-red-800 ">
+
+            {
+                show ? (
+                    <div className=" w-5/5  flex flex-col py-4 mt-5 px-10  text-white rounded m-2">
+                        <text  className=" text-2xl font-light p-2  text-white"> Personal Information</text>
+                        <text className="px-2 ">Username : {userdata.username}</text>
+                        <text className=" px-2">Email Address : {userdata.email}</text>
+                        <text className=" px-2">address : {userdata.address}</text>
+                        <text className=" px-2">Mobile : {userdata.mobile_no}</text>
+                       
+
+
+
+                    </div>
+                ) : (
+
+                    <form onSubmit={handleUserinfo} className=" w-5/5  flex flex-col py-4 mt-5 px-10 gap-2 ">
+                        <text  className=" text-2xl font-light p-2  text-white"> Personal Information</text>
+                        <input className=" w-4/5 p-2 rounded " placeholder=" Enter Username" name="username" value={data.username} onChange={handledata } />
+                        <input className=" w-4/5 p-2 rounded " placeholder=" Enter Mobile_no" name="mobile" value={data.mobile} onChange={handledata} />
+                        <input className=" w-4/5 p-2 rounded " placeholder=" Enter Email Address"  name="email" value={data.email} onChange={handledata }/>
+                        <input className=" w-4/5 p-2 rounded " placeholder=" Enter Pin code"  name=" Pincode" value={data.pincode} onChange={handledata}/>
+                        <input className=" w-4/5 p-2 rounded " placeholder=" Enter Address" name="address" value={ data.address} onChange={ handledata} />
+                        <button className=" bg-orange-500 p-2 w-4/5 rounded cursor-pointer text-white"> Change Personal Details</button>
+                    </form>
+                    )
+
+            }
+
+
+            <form className=" w-5/5  flex flex-col py-4 mt-5 px-10 gap-2">
+                <text  className=" text-2xl font-light p-2  text-white"> Password</text>
+                <input className=" w-4/5 p-2 rounded " placeholder=" Enter current password" />
+                <input className=" w-4/5 p-2 rounded " placeholder=" Enter new passowrd" />
+                <button className=" bg-orange-500 p-2 w-4/5 rounded cursor-pointer text-white"> Change Password</button>
+                
+            </form>
+            
+            
+
+        </div>
+        </div>
     )
 }

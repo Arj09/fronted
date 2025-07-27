@@ -12,26 +12,49 @@ export const ProductPage = ()=>{
     const [category, setCategory] = useState("all")
    
     const [search, setSearch] = useState("all")
-    const { login, mutlisector, category1 , noofProduct, setnoofProduct, setmultisector } = useContext(UserContext)
+    const { login, category1 , noofProduct, setnoofProduct, productID , setProductID } = useContext(UserContext)
     const [popup, setPopup] = useState(true)
     const [show, setShow] = useState(false)
-    const [productID , setProductID] = useState()
+   // const [productID , setProductID] = useState()
     const [itemA, setItemA] = useState(true)
+
+    const [cate, setCate] = useState([])
 
     const [item, setItem] = useState('')
 
 
+    console.log(productID, "print")
 
+
+   
     
   
    
+    useEffect(()=>{
+             Http.get("/api/category",{
+                headers:{
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("Token")}`,
+                }
+        
+            }).then((res)=>{
+                //console.log(res.data)
+                setCate(res.data)
+                
+            }).catch((err)=>{
+                console.log(err)
+            })
+    
+        }, [])
 
+
+        
 
 
     
     
     
-
+   
     
 
     const navigate = useNavigate()
@@ -137,13 +160,13 @@ export const ProductPage = ()=>{
 
 
     const handleCategory = (e)=>{
-        setmultisector("")
+      
         setCategory(e.target.value)
 
     }
    
 
-    console.log("multi", mutlisector , "cate" , category)
+    //onsole.log("multi", mutlisector , "cate" , category)
 
     return(
         <>
@@ -189,8 +212,8 @@ export const ProductPage = ()=>{
             {   data.length !=0 ? (
                 data
                 .filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
-                .filter((data)=> category == "all" ? data : data.category.toLowerCase() === category.toLowerCase())
-                .filter((data)=> category1 == "all" ? data :  data.category.toLowerCase() == mutlisector[0] || data.category.toLowerCase() == mutlisector[1])
+                .filter((data)=> data.category == productID ? data : data.category.toLowerCase() === category.toLowerCase())
+                //.filter((data)=> data.ca)
                 .map((data, index)=>{
                     return(
                         <div className=" relative w-5/5 rounded border-2 shadow-lg shadow-orange-200 hover:border-red-700 px-1 py-2 flex flex-col">
@@ -200,6 +223,11 @@ export const ProductPage = ()=>{
 
                                 <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
                                     <text className=" text-sm">{data.name} </text>
+
+                                </div>
+                                <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
+                                    <text className=" text-sm">{data?.category} </text>
+                                    <text className=" text-sm">{data?.subcategory} </text>
 
                                 </div>
 

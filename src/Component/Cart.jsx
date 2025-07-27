@@ -163,7 +163,7 @@ export const Cart = ()=>{
             Length > 0 && (
                 <div className=" w-4/5 flex flex-row mx-auto my-3 justify-center  ">
                     {
-                        bill > 500 ? (
+                        bill > 100 ? (
                             <button className=" bg-red-400 text-white w-full text-xl py-3 rounded" onClick={handleOrder}>Order</button>
                         ):(
                             <button className=" bg-red-400 text-white w-full text-xl py-3 rounded" disabled onClick={handleOrder}>Order</button>

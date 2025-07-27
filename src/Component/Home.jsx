@@ -14,20 +14,32 @@ export const Home = ()=>{
     
     const navigate = useNavigate()
     const [data, setData] = useState([])
-    const { login,setmultisector, setCategory1, noofProduct, setnoofProduct } = useContext(UserContext)
+    const { login, noofProduct, setnoofProduct , productID, setProductID, sub, setSub} = useContext(UserContext)
     const [p, setp] = useState(front2)
     const [boxShow, setBoxshow] = useState(false)
     const [boxID, setBoxID] = useState()
     const [show, setShow] = useState(false)
-    const [productID , setProductID] = useState()
-
-    const app = ["Atta , dal & rice", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate","Dry fruit", " Cleaning Essentials", "Masala, oil & more", "Breakfast & instant food", "Sauces & Spreads", "Sweet & Chocolate"]
-    const Category1 = [
-        {
-            "name":"Aata  Oil & Dal"
-        }
-    ]
     
+    
+    const [app,  setApp] = useState([])
+
+
+
+    useEffect(()=>{
+         Http.get("/api/category",{
+            headers:{
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("Token")}`,
+            }
+    
+        }).then((res)=>{
+            console.log(res.data)
+            setApp(res.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+
+    }, [])
 
 
 
@@ -46,6 +58,8 @@ export const Home = ()=>{
         })
     },[])
 
+
+    
     const handleAddProduct = (id)=>{
 
         login ?(
@@ -92,7 +106,7 @@ export const Home = ()=>{
     }
 
     const handleProduct1 = ()=>{
-        setCategory1("all")
+        
         navigate("/productpage")
     }
 
@@ -117,45 +131,17 @@ export const Home = ()=>{
 
    
 
-    const handleCategory = (index)=>{
-        const  first = ["pulse", "Wheat floor", "rice"]
-        const second = ["detergent powder"]
-        const third = ["masale", "oil", ]
-        const forth =  ["Tea", "noodles"]
-        const fifth = ["jam","souce"]
-        const six = ["sweet", "chocolate"]
-        if( index == 0 ){
-            setmultisector(first)
-            setCategory1("all1")
-        }
-        if(index == 1){
-            setmultisector(second)
-            setCategory1("all1")
-        }
-        if(index == 2){
-            setmultisector(third)
-            setCategory1("all1")
-        }
-        if(index == 3){
-            setmultisector(forth)
-            setCategory1("all1")
-        }
-        if(index == 4){
-            setmultisector(fifth)
-            setCategory1("all1")
-        }
-        if(index == 5){
-            setmultisector(six)
-            setCategory1("all1")
-        }
+    const handleCategory = (data,name)=>{
+        console.log("category ID", name)
+        setProductID(name)
+        setSub(data)
         navigate("/ProductPage")
 
     }
 
   
     const handleGotoProductpage = ()=>{
-        setCategory1("all")
-        navigate("/productpage")
+      navigate("/productpage")
     }
 
 
@@ -207,12 +193,12 @@ export const Home = ()=>{
                 {
                     app.map((data, index)=>{
                         return(
-                            <div className=" w-5/5 h-[120px] shadow-lg shadow-orange-300  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 "  onClick={()=>handleCategory(index)}>
+                            <div className=" w-5/5 h-[120px] shadow-lg shadow-orange-300  rounded  border-2 border-gray-100  hover:border hover:border-orange-500 "  onClick={()=>handleCategory( data.category_item , data.category_name)}>
                              <div className=" w-full h-4/5  ">
                                 <img src={front1} alt="ok" className=" w-full h-full object-contain " />
                             </div>
                             <div className=" flex flex-col pl-2 ">
-                                <text className="  text-sm flex flex-row justify-center">{app[index]}</text>
+                                <text className="  text-sm flex flex-row justify-center">{data.category_name}</text>
                             </div> 
                                
                             </div>
@@ -252,10 +238,12 @@ export const Home = ()=>{
                                     )
                                 }
                                 
-                                <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
+                                <div className=" w-5/5 h-14  p-1   rounded overflow-hidden " >
                                     <text className=" text-sm">{data.name} </text>
 
                                 </div>
+                                
+
                                 
                                 
                                 
@@ -342,15 +330,19 @@ export const Home = ()=>{
 
             <div className="w-5/5  md:w-4/5  mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
                 {  data.length !=0 ? ( 
-                    data?.filter((data)=>(data.category.toLowerCase()=="chips"))
+                    data?.filter((data)=>(data.category =="Chips & Namkeen"))
+                    .filter((data)=>data.subcategory =="Chips")
                     .map((data, index)=>{
                         return(
                             <div className=" relative rounded shadow-lg shadow-orange-300 w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
                                 
                                 
-                                <div className=" w-5/5 h-[120px] rounded ">
+                                <div className=" w-5/5 h-[120px] rounded relative  ">
                                     <img className="w-4/5 h-full mx-auto  object-contain rounded"  src={`${Http.getUri()}/images/${data.image} ` } />
+                                    
                                 </div>
+
+
                                 
                                 <div className=" w-5/5 h-14 p-1   rounded overflow-hidden " >
                                     <text className=" text-sm">{data.name} </text>
@@ -476,6 +468,10 @@ export const Home = ()=>{
 
 
             </div>
+            </div>
+
+            <div className=" flex flex-row justify-center  w-5/5 bg-red-600 text-white ">
+                <text className=" font-light py-3">© Copyright 2025. Chanchal Mart, Gwalior-474020, India</text>
             </div>
            
 

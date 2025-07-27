@@ -1,5 +1,5 @@
 import React, { useContext }  from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Http } from "./Http";
 import { UserContext } from "./ContextAPI/context";
 import { useNavigate } from "react-router-dom";
@@ -13,11 +13,33 @@ export const AddProduct = ()=>{
     const [price, setPrice] = useState("")
     const [mrp, setMrp] = useState("")
     const [category, setCategory] = useState("")
+     const [subcategory, setsubCategory] = useState("")
     const [quantity, setQuantity] = useState("")
     const { editProductID , productEdit }  = useContext(UserContext)
     const navigate = useNavigate()
-    
+    const [category1, setCategory1] = useState([])
+    const [type1, setType1] = useState([])
 
+
+
+    
+    useEffect(()=>{
+             Http.get("/api/category",{
+                headers:{
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("Token")}`,
+                }
+        
+            }).then((res)=>{
+                setCategory1(res.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+    
+        }, [])
+
+
+        
     
 
     const  HandleProductEdit = (e) =>{
@@ -25,7 +47,13 @@ export const AddProduct = ()=>{
 
         Http.put(`api/product/${editProductID._id}`,{
 
-            price : data.mrp
+            mrp : data.mrp,
+            name: data.name,
+            price: data.price,
+            category : data.category,
+            subcategory : data.subcategory,
+            quantity : data.quantity
+
         },{
             headers: {
                 "Content-Type": "multipart/form-data",
@@ -59,11 +87,12 @@ export const AddProduct = ()=>{
         formData.append("name", name)
         formData.append("price", price)
         formData.append("quantity", quantity)
-        formData.append("category", category)
+     
+        formData.append("subcategory", subcategory)
         formData.append("mrp", mrp)
 
         console.log(" it is form data",formData)
-        console.log(name)
+        
         
         Http.post("api/product",formData,{
             headers: {
@@ -79,7 +108,7 @@ export const AddProduct = ()=>{
            
         }).catch((err)=>{
             console.log(err)
-            console.log(formData)
+            
         })
         
 
@@ -97,6 +126,10 @@ export const AddProduct = ()=>{
     }
 
 
+    
+
+
+
   
     return(
         <>
@@ -108,23 +141,32 @@ export const AddProduct = ()=>{
             <input placeholder=" Enter Product Selling Price " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded" name="price" value={price || ""} onChange={(e)=>setPrice(e.target.value)}/>
             <input placeholder=" Enter Product MRP " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded" name="mrp" value={mrp || ""} onChange={(e)=>setMrp(e.target.value)}/>
             <input placeholder=" Enter Product quantity " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="quantity"   value={ quantity || ""} onChange={(e)=>setQuantity(e.target.value)}/>
-            <select className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded" name="category"  value={category || ""} onChange={(e)=>setCategory(e.target.value)} >
-            <option>Biscuit</option>
-                    <option>Hair oil</option>
-                    <option> Oil</option>
-                    <option>Pulse</option>
-                    <option>Rice</option>
-                    <option>Food</option>
-                    <option>chocolate</option>
-                    <option>Wheat floor</option>
-                    <option>Cool Drink</option>
-                    <option>Noodles</option>
-                    <option>Tea</option>
-                    <option>Detergent Powder</option>
-                    <option>Chips</option>
-                    <option>Shakkar</option>
-                    <option>tea</option>
-                    <option>souce</option>
+            
+
+            <select className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded" name="category"  value={ category || ""} onChange={(e)=>setCategory(e.target.value)} >
+                    {
+                        category1.map((data)=>{
+                            return(
+                                <option >{data.category_name}</option>
+
+                            )
+                        })
+                    }
+                   
+                    
+            </select>
+
+            <select className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded" name="subcategory"  value={ subcategory || ""} onChange={(e)=>setsubCategory(e.target.value)} >
+                {
+                    category1
+                    .filter((data)=>data.category == category ?? data.category_item)
+                    //.filter((data)=>)
+                    .map((data, index)=>{
+                        return(
+                            <option key={index}>{data.item_name}</option>
+                        )
+                    })
+                }
             </select>
             <input type="file" accept="image/*" className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded"  onChange={(e)=>setImage(e.target.files[0])} />
             <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5 mx-auto rounded text-white">Add Product</button>
@@ -133,22 +175,46 @@ export const AddProduct = ()=>{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <form  onSubmit={HandleProductEdit} className=" w-4/5 border-2 rounded p-2 mx-auto my-5 flex flex-col gap-2">
-            <input placeholder=" Enter Product Name" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="mrp" value={ data.mrp || ""  }onChange={handleEditdata}  />
+            <input placeholder=" Enter Product Name" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="name" value={ data.name || ""  }onChange={handleEditdata}  />
+            <input placeholder=" Enter Product MRP" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="mrp" value={ data.mrp || ""  }onChange={handleEditdata}  />
+            <input placeholder=" Enter Product price" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="price" value={ data.price || ""  }onChange={handleEditdata}  />
+            <input placeholder=" Enter Product quantity" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="quantity" value={ data.quantity || ""  }onChange={handleEditdata}  />
+          
+            <input placeholder=" Enter Product subcategory" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="mrp" value={ data.subcategory || ""  }onChange={handleEditdata}  />
 
             <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5  mx-auto rounded text-white">Add Product</button>
-        
-
-
-
-
-
-
-
-
-
-
         </form>
+
+
+
+
+
+
+
+
+
 
         <div className=" flex flex-col rounded w-4/5 mx-auto border-2 p-4 mb-10 gap-3">
             <input placeholder=" Enter Product name" className=" pl-2 w-4/5 m-auto rounded py-2  border-2" />
@@ -189,6 +255,9 @@ export const AddProduct = ()=>{
 
 
         </div>
+
+
+       
 
            
 

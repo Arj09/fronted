@@ -144,13 +144,13 @@ export const Admin = ()=>{
    
 
     const handleEdit =(id)=>{
+        if(login) { navigate("/")}
         setEditproductID(id)
         setProductedit(true)
         navigate("/addProduct")
         
 
     }
-
 
 
     const handleDelete = (id)=>{
@@ -181,6 +181,7 @@ export const Admin = ()=>{
     return(
         <>
         <Navbar/>
+        <div>
 
         <div className=" w-4/5 mx-auto flex flex-row my-5 justify-center ">
             <input  placeholder=" Search" className=" border-2 border-black    pl-2 w-4/5 py-2 rounded mr-5"  onChange={(e)=>setItem(e.target.value)} value={item}  />
@@ -253,9 +254,12 @@ export const Admin = ()=>{
                                 {
                                     data.mrp > data.price ? <p className="py-1.5">&#x20B9;<text className=" pr-1 line-through py-1.5">{data.mrp}</text>{data.price}</p> : <p className="py-1.5">&#x20B9;<text className="py-1.5">{data.mrp}</text></p>
                                 }
+                                    
+                                </div>
+                                <div className=" flex flex-row  w-5/5 justify-between sm:px-2">
                                     <button className=" px-3 py-1.5 text-white bg-red-700  rounded" onClick={()=>handleEdit(data)}>Edit</button>
                                     <button className=" px-2 py-1.5 text-white bg-red-700  rounded" onClick={()=>handleDelete(data._id)}>Delete</button>
-                                    
+
 
                                 </div>
                             
@@ -268,6 +272,7 @@ export const Admin = ()=>{
                 )
             }
 
+        </div>
         </div>
 
 
