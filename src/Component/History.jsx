@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navbar1 } from "./Navbar1";
 import { Http } from "./Http";
+import { useNavigate, Link } from "react-router-dom";
 
 
 
@@ -8,6 +9,7 @@ import { Http } from "./Http";
 export const History = ()=>{
 
     const [order, setOrder] = useState([])
+    const navigate = useNavigate()
 
     const url = Http.getUri()
 
@@ -25,27 +27,31 @@ export const History = ()=>{
         })
     },[])
 
-    console.log(Http.getUri())
+   const handleBack = ()=>{
+     navigate("/profile")
+   }
 
     return(
         <>
-        <Navbar1/>
-        <div className=" flex flex-col lg:absolute top-0  right-0  bg-orange-500    w-full   lg:w-10/12">
+        <div className=" flex flex-row bg-orange-500 w-full mb-5 p-3 ">
+             <button className=" px-3 py-2 text-orange-500 bg-white rounded" onClick={handleBack}>Back</button>
+        </div>
+        <div className=" flex flex-col   mx-auto w-4/5 rounded   ">
             {
                 order.map((data, index)=>{
                     return(
-                        <div className=" flex flex-col gap-3 p-5 ">
+                        <div className=" w-4/5 flex flex-col gap-2 p-2 my-5  rounded   mx-auto  ">
                             
-                            <div className=" flex flex-row justify-between p-3 bg-red-800  text-white">
-                            <text>{`Order date : ${data.order_date}`}</text>
-                            <text>{`Order status : ${data.order_status}`}</text>
+                            <div className=" w-5/5 flex flex-col p-3 bg-orange-500  text-white">
+                            <text>{`Order Date : ${data.order_date}`}</text>
+                            <text>{`Order Status : ${data.order_status}`}</text>
                             </div>
                             
                             {
                                 data.ItemStore.map((data)=>{
                                     return(
-                                        <div className=" w-[400px] h-[450px] rounded  border-2 border-gray-100  mx-auto  ">
-                                            <div className=" w-full bg-gray-100 h-72 rounded ">
+                                        <div className=" flex flex-col w-full rounded border-2">
+                                            <div className=" w-5/5 h-[120px] bg-gray-100  rounded ">
                                                 <img alt="loading" src={`${Http.getUri()}/images/${data.image} ` } className="  w-4/5 h-full mx-auto py-6 bg-none   mix-blend-multiply object-contain"/>
                                             </div>
                                             <div className=" flex flex-col pl-5 pt-5  ">
@@ -60,7 +66,7 @@ export const History = ()=>{
                                     )
                                 })
                             }
-                            <text className=" bg-red-600 text-white flex flex-row justify-end p-3">{`Total amount : ${data.bill}`}</text>
+                            <text className=" rounded bg-orange-500 text-white flex flex-row justify-end p-3">{`Total amount : ${data.bill}`}</text>
                             
 
 

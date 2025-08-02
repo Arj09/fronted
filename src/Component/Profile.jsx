@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Navbar1 } from "./Navbar1";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { Http } from "./Http";
+import { UserContext } from "./ContextAPI/context";
+import { History } from "./History";
 
 
 
@@ -9,6 +11,8 @@ export const Profile = ()=>{
     const [data, setData] = useState({})
     const [show, setShow] = useState(true)
     const [userdata, setUserdata] = useState({})
+    const navigate = useNavigate()
+    const { setLogin} = useContext(UserContext)
 
 
     const handledata = (e) =>{
@@ -69,13 +73,31 @@ export const Profile = ()=>{
 
     }
 
+
+    const handleLogout = ()=>{
+        setLogin(false)
+        localStorage.removeItem('Token')
+        navigate("/")
+        
+    
+    }
+
     
 
 
     return(
         <div className=" flex flex-row">
-        <div className="  w-2/12 ">
-            <Navbar1/>
+        <div className="  w-2/12 flex flex-col bg-orange-500   ">
+            <text className=" hidden md:flex justify-center md:text-3xl text-white  p-3 cursor-pointer  ">ChanchalMart</text>
+            <text className=" flex md:hidden justify-center text-orange-500 bg-white  p-3 cursor-pointer  ">CMart</text>
+            <div className=" flex flex-col md:text-sm gap-1 text-white md:p-6 mx-auto ">
+                <Link className=" cursor-pointer hover:bg-white hover:text-black py-2 px-3 rounded" to="/"  >Home</Link>
+                <Link className=" cursor-pointer hover:bg-white hover:text-black py-2 px-3 rounded" to="/profile"  >Profile</Link>
+                <Link className=" cursor-pointer hover:bg-white hover:text-black py-2 px-3 rounded" to="/profile/orderHistory"   >History</Link>
+                <Link className=" cursor-pointer hover:bg-white hover:text-black py-2 px-3 rounded"  to={"/"}  onClick={handleLogout}  >Logout</Link>
+                
+            </div>
+            
 
         </div>
         <div className=" w-10/12 bg-red-800 ">
@@ -85,8 +107,8 @@ export const Profile = ()=>{
                     <div className=" w-5/5  flex flex-col py-4 mt-5 px-10  text-white rounded m-2">
                         <text  className=" text-2xl font-light p-2  text-white"> Personal Information</text>
                         <text className="px-2 ">Username : {userdata.username}</text>
-                        <text className=" px-2">Email Address : {userdata.email}</text>
-                        <text className=" px-2">address : {userdata.address}</text>
+                        <text className=" px-2">Email Id : {userdata.email}</text>
+                        <text className=" px-2">Address : {userdata.address}</text>
                         <text className=" px-2">Mobile : {userdata.mobile_no}</text>
                        
 
@@ -116,6 +138,7 @@ export const Profile = ()=>{
                 <button className=" bg-orange-500 p-2 w-4/5 rounded cursor-pointer text-white"> Change Password</button>
                 
             </form>
+            
             
             
 

@@ -215,7 +215,7 @@ export const Home = ()=>{
 
 
             <div className=" flex flex-row justify-between w-4/5 mx-auto">
-                <text className=" text-3xl "> All Product</text>
+                <text className=" font-medium text-lg md:text-2xl  "> All Product</text>
                 <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
@@ -270,7 +270,7 @@ export const Home = ()=>{
 
 
             <div className=" flex flex-row justify-between w-4/5 mx-auto mt-5">
-                <text className=" font-medium text-2xl "> Pulse</text>
+                <text className=" font-medium text-lg md:text-2xl  "> Pulse</text>
                 <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
@@ -325,7 +325,7 @@ export const Home = ()=>{
 
 
             <div className=" flex flex-row justify-between w-4/5 mx-auto mt-5">
-                <text className=" font-medium text-2xl "> Snakes & Chips</text>
+                <text className=" font-medium text-lg md:text-2xl  "> Snakes & Chips</text>
                 <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
@@ -386,7 +386,7 @@ export const Home = ()=>{
 
 
             <div className=" flex flex-row justify-between w-4/5 mx-auto mt-5">
-                <text className=" font-medium text-sm md:text-2xl ">Dairy Milk Silk </text>
+                <text className=" font-medium text-lg md:text-2xl ">Chocolate </text>
                 <text className=" pt-5 text-blue-500 cursor-pointer" onClick={handleGotoProductpage}> See more</text>
             </div>
 
