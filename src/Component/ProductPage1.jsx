@@ -179,7 +179,7 @@ export const ProductPage = ()=>{
         setselectSub("all")
         setProductID(cate)
         setSub(data)
-        console.log(data)
+        console.log(data, cate)
 
     }
 
@@ -233,7 +233,7 @@ export const ProductPage = ()=>{
                   
 
                     {
-                        sub.map((data, index)=>{
+                        sub?.map((data, index)=>{
                             return(
                                 <div className=" w-5/5 border-2  rounded p-0.5 md:p-1.5  cursor-pointer justify-center flex" onClick={()=>handleSubCategory(data.item_name)}>
                                     <text className=" text-xs text-center"  >{data.item_name}</text>
@@ -251,10 +251,13 @@ export const ProductPage = ()=>{
             <div className=" w-11/12  border-2   p-1 rounded grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 grid-flow-row  ">
                 {
                     data
-                    .filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
-                    .filter((data)=> productID == "all"  ? data :  data.category.toLowerCase() == productID.trim().toLowerCase() )
+                  /*   .filter((data)=>data.name.toLowerCase().startsWith(item.toLowerCase()))
+                    .filter((data)=> data.category == productID  ? data : data.category.toLowerCase() == productID.trim().toLowerCase()  )
                     .filter((data)=> selectSub == "all" ? data : data.subcategory.toLowerCase() == selectSub.toLowerCase()  )
-                    .map((data, index)=>{
+                    */
+                   .filter((data)=> productID == "all" ? data : data.category == productID )
+                   .filter((data)=>item == "" ? data : data.name.toLowerCase().includes(item))
+                   .map((data, index)=>{
                         return(
                             <div className=" relative w-5/5 rounded border-2 shadow-lg shadow-orange-200 hover:border-red-700 px-1 py-2 flex flex-col">
                                     <div className=" w-5/5 h-[150px] rounded ">

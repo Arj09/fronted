@@ -10,6 +10,7 @@ export const History = ()=>{
 
     const [order, setOrder] = useState([])
     const navigate = useNavigate()
+   
 
     const url = Http.getUri()
 
@@ -31,11 +32,18 @@ export const History = ()=>{
      navigate("/profile")
    }
 
+    
+
+
     return(
         <>
         <div className=" flex flex-row bg-orange-500 w-full mb-5 p-3 ">
              <button className=" px-3 py-2 text-orange-500 bg-white rounded" onClick={handleBack}>Back</button>
         </div>
+
+       
+
+
         <div className=" flex flex-col   mx-auto w-4/5 rounded   ">
             {
                 order.map((data, index)=>{

@@ -11,7 +11,7 @@ export const Navbar = ()=>{
     const [Show, setShow] = useState(false)
     const [searchIcon, setSearchIcon] = useState(false)
     const navigate = useNavigate()
-    const { login, setLogin, noofProduct} = useContext(UserContext)
+    const { login, setLogin, noofProduct,  setUser} = useContext(UserContext)
 
     const handleClose =()=>{
         setShow(false)
@@ -65,6 +65,7 @@ export const Navbar = ()=>{
             
         }).then((res)=>{
             console.log(res.data)
+            setUser(res.data.id)
             res.data.username && setLogin(true)
             
         }).catch((err)=>{

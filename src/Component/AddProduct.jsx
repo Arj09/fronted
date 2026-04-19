@@ -12,13 +12,14 @@ export const AddProduct = ()=>{
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
     const [mrp, setMrp] = useState("")
-    const [category, setCategory] = useState("")
+    const [category, setCategory] = useState("Atta , Rice & Dal")
      const [subcategory, setsubCategory] = useState("")
     const [quantity, setQuantity] = useState("")
     const { editProductID , productEdit }  = useContext(UserContext)
     const navigate = useNavigate()
     const [category1, setCategory1] = useState([])
     const [type1, setType1] = useState([])
+    const [SubItem, setsubItem ] = useState([])
 
 
 
@@ -32,11 +33,37 @@ export const AddProduct = ()=>{
         
             }).then((res)=>{
                 setCategory1(res.data)
+                console.log(res.data)
+                
             }).catch((err)=>{
                 console.log(err)
             })
     
         }, [])
+
+
+
+    useEffect(()=>{
+             Http.get("/api/type",{
+                headers:{
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("Token")}`,
+                }
+        
+            }).then((res)=>{
+                setType1(res.data)
+                console.log(res.data)
+                
+            }).catch((err)=>{
+                console.log(err)
+            })
+    
+        }, [])    
+
+
+    ///const receive = category1.filter((data)=>data.category_name == "Oil, Masala & More"  ?? data.category_item )
+
+  
 
 
         
@@ -87,7 +114,7 @@ export const AddProduct = ()=>{
         formData.append("name", name)
         formData.append("price", price)
         formData.append("quantity", quantity)
-     
+        formData.append("category", category)
         formData.append("subcategory", subcategory)
         formData.append("mrp", mrp)
 
@@ -126,6 +153,14 @@ export const AddProduct = ()=>{
     }
 
 
+    const handleCate =(e)=>{
+        console.log()
+
+        setCategory(e.target.value)
+        
+        
+
+    }
     
 
 
@@ -143,11 +178,17 @@ export const AddProduct = ()=>{
             <input placeholder=" Enter Product quantity " className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="quantity"   value={ quantity || ""} onChange={(e)=>setQuantity(e.target.value)}/>
             
 
-            <select className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded" name="category"  value={ category || ""} onChange={(e)=>setCategory(e.target.value)} >
+            <select className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded" name="category"  value={ category || ""} onChange={handleCate} >
                     {
                         category1.map((data)=>{
                             return(
+                            <div className=" flex flex-col">
                                 <option >{data.category_name}</option>
+                               
+                               
+                            </div>
+                                
+                                
 
                             )
                         })
@@ -158,12 +199,12 @@ export const AddProduct = ()=>{
 
             <select className=" border-2 border-black py-2 pl-2 w-4/5 mx-auto rounded" name="subcategory"  value={ subcategory || ""} onChange={(e)=>setsubCategory(e.target.value)} >
                 {
-                    category1
-                    .filter((data)=>data.category == category ?? data.category_item)
-                    //.filter((data)=>)
+                    type1
+                    .filter((data)=>data.category_id == category  )
+                    
                     .map((data, index)=>{
                         return(
-                            <option key={index}>{data.item_name}</option>
+                            <option key={index}>{data.name}</option>
                         )
                     })
                 }
@@ -172,6 +213,21 @@ export const AddProduct = ()=>{
             <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5 mx-auto rounded text-white">Add Product</button>
 
         </form>
+
+        
+
+        <div>
+
+           
+
+        </div>
+
+        <div className=" w-4/5 rounded h-10 border-2 mx-auto">
+
+
+
+
+        </div>
 
 
 

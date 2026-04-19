@@ -8,21 +8,23 @@ export const PaymentPage = ()=>{
     const [option1, setOption1] = useState(false)
     const [show, setShow ] = useState(false)
     const { cartID } = useContext(UserContext)
+   
 
     const navigate = useNavigate()
 
     const handleOption =(id)=>{
-        console.log(id)
-        if(id === "option2"){
-            setOption1(true)
-            setOption(false)
+         console.log(id)
+        if(id === "option1"){
+            handlePayment()
+            setShow(true)
+            setOption(true)
+           
         }
         else{
-            setOption(true)
-            setOption1(false)
+            
+            navigate("/checkout")
 
         }
-
     }
 
 
@@ -51,8 +53,8 @@ export const PaymentPage = ()=>{
 
     const handlePayment = (e)=>{
         
-        console.log("request send", cartID)
-        e.preventDefault()
+        //console.log("request send", cartID)
+       
         Http.post(`/api/order`,{
             cart_id:cartID
         },{
@@ -109,8 +111,13 @@ export const PaymentPage = ()=>{
                 <input type="radio" value="option2" checked={option1} onClick={(e)=>handleOption(e.target.value)}  />
                 <label> Payment Online</label>
             </label>
+            <label className=" flex flex-row gap-x-4 px-3">
+                <input type="radio" value="option2"   />
+                <label> Paytm</label>
+            </label>
 
-            <button className=" px-3 py-1.5 bg-orange-500 text-white mt-10 text-2xl rounded" onClick={handlePayment}>Next</button>
+
+
            
             
         </form>

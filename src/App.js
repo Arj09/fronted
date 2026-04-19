@@ -14,6 +14,10 @@ import { Profile } from "./Component/Profile"
 import { Detail } from './Component/Detail';
 import { PaymentPage } from './Component/Payment';
 import { Admin } from './Component/Admin/Admin';
+import { PaymentComplete } from './Component/PaymentComplete';
+import { PaymentSucess } from './Component/PaymentSucess';
+import { Order } from './Component/Admin/Order';
+import { Unavailable } from './Component/Admin/Unavailable';
 
 function App() {
 
@@ -22,7 +26,11 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route index element={<Home/>} />
-      <Route path='admin' element={<Admin/>} />
+      <Route path='admin'>
+        <Route index element={<Admin/>} />
+        <Route path='order' element={<Order/>} />
+        <Route path='unavailable' element={<Unavailable/>} />
+      </Route> 
       <Route path='login' element={<Login/>}/>
       <Route path='productpage' element={<ProductPage/>} />
       <Route path='cart' element={<Cart/>} />
@@ -32,6 +40,8 @@ function App() {
       <Route path='addProduct' element={<AddProduct/>} />
       <Route path='detail' element={<Detail/>}  />
       <Route path='payment' element={<PaymentPage/>} />
+      <Route path='checkout' element={<PaymentComplete/>} />
+      <Route path='success' element={<PaymentSucess/>}       />
       <Route path='profile'>
         <Route index element={ <Profile/>}/>
         <Route path='orderHistory' element={<History/>} />

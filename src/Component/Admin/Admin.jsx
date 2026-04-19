@@ -187,8 +187,10 @@ export const Admin = ()=>{
                     <li className=" hover:bg-red-700 p-2 rounded-md ">Product</li>
                     <li className=" hover:bg-red-700 p-2 rounded-md ">Pending Order</li>
                     <li className=" hover:bg-red-700 p-2 rounded-md ">sucessFully</li>
-                    <li className=" hover:bg-red-700 p-2 rounded-md">Order</li> 
+                    <li  className=" hover:bg-red-700 p-2 rounded-md">Order</li> 
                     <li className="hover:bg-red-700 p-2 rounded-md ">User profile</li>
+                    <li  className="hover:bg-red-700 p-2 rounded-md "><a href="/admin/unavailable">Unavailable Product</a></li>
+
                     
                 </ul>
                 
@@ -205,7 +207,7 @@ export const Admin = ()=>{
 
 
                 <div className=" w-4/5 mx-auto my-3 flex flex-row justify-between border-2 bg-orange-500 border-red-500 rounded sm:px-5 px-1 py-1">
-            <div className=" flex flex-row align-middle   ">
+                <div className=" flex flex-row align-middle   ">
 
                 <text className=" sm:px-2 mx-2 sm:pt-1 text-white text-xl">Filter</text>
                 
