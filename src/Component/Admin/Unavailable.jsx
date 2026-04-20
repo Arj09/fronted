@@ -73,6 +73,8 @@ export const Unavailable = ()=>{
 
 
         </div>
+
+        <text> Reday</text>
         
         
         
