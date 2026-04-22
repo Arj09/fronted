@@ -159,7 +159,9 @@ export const ProductPage = ()=>{
 
     
 
-    const handleSearch = ()=>{
+    const handleSearch = (e)=>{
+       // setselectSub("all")
+        setItem(e.target.value)
 
     }
 
@@ -197,7 +199,7 @@ export const ProductPage = ()=>{
         <Navbar/>
 
         <div className=" w-4/5 mx-auto flex flex-row my-5 justify-center ">
-            <input  placeholder=" Search" className=" border-2 border-black    pl-2 w-4/5 py-2 rounded mr-5"  onChange={(e)=>setItem(e.target.value)} value={item}  />
+            <input  placeholder=" Search" className=" border-2 border-black    pl-2 w-4/5 py-2 rounded mr-5"  onChange={handleSearch} value={item}  />
             <button className=" bg-red-700 text-white  rounded px-4 py-1.5 " onSubmit={handleSearch}>Search</button>
         </div>
 
