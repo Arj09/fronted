@@ -181,7 +181,9 @@ export const Home = ()=>{
            
 
 
-
+        <div className=" flex mx-auto m-4 w-4/5 justify-center bg-red-500 text-white rounded  ">
+            <text className=" text-2xl p-2"> Website under developemnt</text>
+        </div>
             
 
             

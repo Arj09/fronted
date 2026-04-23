@@ -57,21 +57,14 @@ export const ProductPage = ()=>{
         }, [])
 
 
-        
-
-
-    
-    
-    
-   
-    
-
     const navigate = useNavigate()
 
 
     const selectCategory = () => {
         return [...new Set(data.map((data) => data.category))];
       };
+
+
 
     useEffect(()=>{
         Http.get("/api/product",{
@@ -87,6 +80,8 @@ export const ProductPage = ()=>{
             console.log(err)
         })
     },[noofProduct])
+
+    
 
     const handleAddProduct = (id)=>{
         login ?(
