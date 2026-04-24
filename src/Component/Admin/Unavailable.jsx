@@ -74,7 +74,7 @@ export const Unavailable = ()=>{
 
         </div>
 
-        <text> Reday</text>
+        <text className=" flex mx-auto w-4/5 bg-red-600 text-white p-2 rounded"> Reday</text>
         
         
         
