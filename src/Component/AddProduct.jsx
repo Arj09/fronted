@@ -259,6 +259,8 @@ export const AddProduct = ()=>{
             <input placeholder=" Enter Product quantity" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="quantity" value={ data.quantity || ""  }onChange={handleEditdata}  />
           
             <input placeholder=" Enter Product subcategory" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="mrp" value={ data.subcategory || ""  }onChange={handleEditdata}  />
+            <input placeholder=" Enter Product message" className=" w-4/5 border-2 border-black py-2 pl-2 mx-auto rounded"  name="message" value={ data.message || ""  }onChange={handleEditdata}  />
+
 
             <button className=" bg-red-600 py-2.5 cursor-pointer text-xl pl-2 w-4/5  mx-auto rounded text-white">Add Product</button>
         </form>

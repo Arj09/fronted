@@ -276,7 +276,6 @@ export const Home = ()=>{
             <div className="w-5/5  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
                 {  data.length !=0 ? ( 
                     data?.filter((data)=>(data.category =="Ice Creams & Frozen Desserts"))
-                    .filter((data)=>data.subcategory =="Amul Ice Creams")
                     .map((data, index)=>{
                         return(
                             <div className=" relative rounded shadow-lg shadow-orange-300 w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">
@@ -438,7 +437,7 @@ export const Home = ()=>{
             <div className="w-5/5  md:w-4/5 mx-auto rounded  grid grid-flow-col gap-x-2 grid-rows-1 px-2  py-2 overflow-x-scroll">
                 {  data.length !=0 ? ( 
                     data?.filter((data)=>(data.category =="Ice Creams & Frozen Desserts"))
-                    .filter((data)=>data.subcategory =="Amul Ice Creams")
+                    //.filter((data)=>data.subcategory =="Amul Ice Creams")
                     .map((data, index)=>{
                         return(
                             <div className=" relative rounded shadow-lg shadow-orange-300 w-[200px] border-2 border-gray-100 p-1 gap-y-1 flex flex-col">

@@ -257,6 +257,10 @@ export const ProductPage = ()=>{
                    .map((data, index)=>{
                         return(
                             <div className=" relative w-5/5 rounded border-2 shadow-lg shadow-orange-200 hover:border-red-700 px-1 py-2 flex flex-col">
+                                    
+                                   
+                                    {data?.message ? <text className=" bg-green-300 p-1 rounded text-white">{data.message}</text> : <text className=" hidden">{data.message}</text>}
+
                                     <div className=" w-5/5 h-[150px] rounded ">
                                         <img className="w-4/5 h-full mx-auto  object-contain rounded"  src={`${Http.getUri()}/images/${data.image} ` } />
                                     </div>
