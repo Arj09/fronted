@@ -79,7 +79,8 @@ export const AddProduct = ()=>{
             price: data.price,
             category : data.category,
             subcategory : data.subcategory,
-            quantity : data.quantity
+            quantity : data.quantity,
+            message : data.message
 
         },{
             headers: {
